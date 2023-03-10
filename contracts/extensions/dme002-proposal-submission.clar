@@ -76,7 +76,7 @@
 	(begin
 		(asserts! (>= start-block-height (+ block-height (try! (get-parameter "minimum-proposal-start-delay")))) err-proposal-minimum-start-delay)
 		(asserts! (<= start-block-height (+ block-height (try! (get-parameter "maximum-proposal-start-delay")))) err-proposal-maximum-start-delay)
-		(asserts! (unwrap-panic (contract-call? .dme000-governance-token edg-has-percentage-balance tx-sender (try! (get-parameter "propose-factor")))) err-insufficient-balance)
+		(asserts! (unwrap-panic (contract-call? .dme000-governance-token dmg-has-percentage-balance tx-sender (try! (get-parameter "propose-factor")))) err-insufficient-balance)
 		(contract-call? .dme001-proposal-voting add-proposal
 			proposal
 			{

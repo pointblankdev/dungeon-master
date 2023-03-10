@@ -36,7 +36,7 @@
 		(try! (contract-call? .dme004-emergency-execute set-signals-required u3)) ;; signal from 3 out of 4 team members requied.
 
 		;; Mint initial token supply.
-		(try! (contract-call? .dme000-governance-token edg-mint-many
+		(try! (contract-call? .dme000-governance-token dmg-mint-many
 			(list
 				{amount: u1000, recipient: sender}
 				{amount: u1000, recipient: 'ST1SJ3DTE5DN7X54YDH5D64R3BCB6A2AG2ZQ8YPD5}

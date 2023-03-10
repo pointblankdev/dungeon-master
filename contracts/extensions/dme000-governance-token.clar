@@ -15,11 +15,11 @@
 (define-constant err-unauthorised (err u3000))
 (define-constant err-not-token-owner (err u4))
 
-(define-fungible-token edg-token)
-(define-fungible-token edg-token-locked)
+(define-fungible-token dmg-token)
+(define-fungible-token dmg-token-locked)
 
-(define-data-var token-name (string-ascii 32) "Influence")
-(define-data-var token-symbol (string-ascii 10) "INF")
+(define-data-var token-name (string-ascii 32) "Charisma")
+(define-data-var token-symbol (string-ascii 10) "CHA")
 (define-data-var token-uri (optional (string-utf8 256)) none)
 (define-data-var token-decimals uint u6)
 
@@ -33,40 +33,40 @@
 
 ;; governance-token-trait
 
-(define-public (edg-transfer (amount uint) (sender principal) (recipient principal))
+(define-public (dmg-transfer (amount uint) (sender principal) (recipient principal))
 	(begin
 		(try! (is-dao-or-extension))
-		(ft-transfer? edg-token amount sender recipient)
+		(ft-transfer? dmg-token amount sender recipient)
 	)
 )
 
-(define-public (edg-lock (amount uint) (owner principal))
+(define-public (dmg-lock (amount uint) (owner principal))
 	(begin
 		(try! (is-dao-or-extension))
-		(try! (ft-burn? edg-token amount owner))
-		(ft-mint? edg-token-locked amount owner)
+		(try! (ft-burn? dmg-token amount owner))
+		(ft-mint? dmg-token-locked amount owner)
 	)
 )
 
-(define-public (edg-unlock (amount uint) (owner principal))
+(define-public (dmg-unlock (amount uint) (owner principal))
 	(begin
 		(try! (is-dao-or-extension))
-		(try! (ft-burn? edg-token-locked amount owner))
-		(ft-mint? edg-token amount owner)
+		(try! (ft-burn? dmg-token-locked amount owner))
+		(ft-mint? dmg-token amount owner)
 	)
 )
 
-(define-public (edg-mint (amount uint) (recipient principal))
+(define-public (dmg-mint (amount uint) (recipient principal))
 	(begin
 		(try! (is-dao-or-extension))
-		(ft-mint? edg-token amount recipient)
+		(ft-mint? dmg-token amount recipient)
 	)
 )
 
-(define-public (edg-burn (amount uint) (owner principal))
+(define-public (dmg-burn (amount uint) (owner principal))
 	(begin
 		(try! (is-dao-or-extension))
-		(ft-burn? edg-token amount owner)
+		(ft-burn? dmg-token amount owner)
 	)
 )
 
@@ -100,14 +100,14 @@
 	)
 )
 
-(define-private (edg-mint-many-iter (item {amount: uint, recipient: principal}))
-	(ft-mint? edg-token (get amount item) (get recipient item))
+(define-private (dmg-mint-many-iter (item {amount: uint, recipient: principal}))
+	(ft-mint? dmg-token (get amount item) (get recipient item))
 )
 
-(define-public (edg-mint-many (recipients (list 200 {amount: uint, recipient: principal})))
+(define-public (dmg-mint-many (recipients (list 200 {amount: uint, recipient: principal})))
 	(begin
 		(try! (is-dao-or-extension))
-		(ok (map edg-mint-many-iter recipients))
+		(ok (map dmg-mint-many-iter recipients))
 	)
 )
 
@@ -118,7 +118,7 @@
 (define-public (transfer (amount uint) (sender principal) (recipient principal) (memo (optional (buff 34))))
 	(begin
 		(asserts! (or (is-eq tx-sender sender) (is-eq contract-caller sender)) err-not-token-owner)
-		(ft-transfer? edg-token amount sender recipient)
+		(ft-transfer? dmg-token amount sender recipient)
 	)
 )
 
@@ -135,11 +135,11 @@
 )
 
 (define-read-only (get-balance (who principal))
-	(ok (+ (ft-get-balance edg-token who) (ft-get-balance edg-token-locked who)))
+	(ok (+ (ft-get-balance dmg-token who) (ft-get-balance dmg-token-locked who)))
 )
 
 (define-read-only (get-total-supply)
-	(ok (+ (ft-get-supply edg-token) (ft-get-supply edg-token-locked)))
+	(ok (+ (ft-get-supply dmg-token) (ft-get-supply dmg-token-locked)))
 )
 
 (define-read-only (get-token-uri)
@@ -148,16 +148,16 @@
 
 ;; governance-token-trait
 
-(define-read-only (edg-get-balance (who principal))
+(define-read-only (dmg-get-balance (who principal))
 	(get-balance who)
 )
 
-(define-read-only (edg-has-percentage-balance (who principal) (factor uint))
+(define-read-only (dmg-has-percentage-balance (who principal) (factor uint))
 	(ok (>= (* (unwrap-panic (get-balance who)) factor) (* (unwrap-panic (get-total-supply)) u1000)))
 )
 
-(define-read-only (edg-get-locked (owner principal))
-	(ok (ft-get-balance edg-token-locked owner))
+(define-read-only (dmg-get-locked (owner principal))
+	(ok (ft-get-balance dmg-token-locked owner))
 )
 
 ;; --- Extension callback

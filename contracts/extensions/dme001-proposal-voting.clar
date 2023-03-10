@@ -90,7 +90,7 @@
 			)
 		)
 		(print {event: "vote", proposal: proposal, voter: tx-sender, for: for, amount: amount})
-		(contract-call? .dme000-governance-token edg-lock amount tx-sender)
+		(contract-call? .dme000-governance-token dmg-lock amount tx-sender)
 	)
 )
 
@@ -122,7 +122,7 @@
 		)
 		(asserts! (get concluded proposal-data) err-proposal-not-concluded)
 		(map-delete member-total-votes {proposal: proposal-principal, voter: tx-sender})
-		(contract-call? .dme000-governance-token edg-unlock votes tx-sender)
+		(contract-call? .dme000-governance-token dmg-unlock votes tx-sender)
 	)
 )
 
