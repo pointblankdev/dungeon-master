@@ -15,8 +15,8 @@
 (define-constant err-unauthorised (err u3000))
 (define-constant err-not-token-owner (err u4))
 
-(define-fungible-token dmg-token)
-(define-fungible-token dmg-token-locked)
+(define-fungible-token charisma)
+(define-fungible-token charisma-locked)
 
 (define-data-var token-name (string-ascii 32) "Charisma")
 (define-data-var token-symbol (string-ascii 10) "CHA")
@@ -36,37 +36,37 @@
 (define-public (dmg-transfer (amount uint) (sender principal) (recipient principal))
 	(begin
 		(try! (is-dao-or-extension))
-		(ft-transfer? dmg-token amount sender recipient)
+		(ft-transfer? charisma amount sender recipient)
 	)
 )
 
 (define-public (dmg-lock (amount uint) (owner principal))
 	(begin
 		(try! (is-dao-or-extension))
-		(try! (ft-burn? dmg-token amount owner))
-		(ft-mint? dmg-token-locked amount owner)
+		(try! (ft-burn? charisma amount owner))
+		(ft-mint? charisma-locked amount owner)
 	)
 )
 
 (define-public (dmg-unlock (amount uint) (owner principal))
 	(begin
 		(try! (is-dao-or-extension))
-		(try! (ft-burn? dmg-token-locked amount owner))
-		(ft-mint? dmg-token amount owner)
+		(try! (ft-burn? charisma-locked amount owner))
+		(ft-mint? charisma amount owner)
 	)
 )
 
 (define-public (dmg-mint (amount uint) (recipient principal))
 	(begin
 		(try! (is-dao-or-extension))
-		(ft-mint? dmg-token amount recipient)
+		(ft-mint? charisma amount recipient)
 	)
 )
 
 (define-public (dmg-burn (amount uint) (owner principal))
 	(begin
 		(try! (is-dao-or-extension))
-		(ft-burn? dmg-token amount owner)
+		(ft-burn? charisma amount owner)
 	)
 )
 
@@ -101,7 +101,7 @@
 )
 
 (define-private (dmg-mint-many-iter (item {amount: uint, recipient: principal}))
-	(ft-mint? dmg-token (get amount item) (get recipient item))
+	(ft-mint? charisma (get amount item) (get recipient item))
 )
 
 (define-public (dmg-mint-many (recipients (list 200 {amount: uint, recipient: principal})))
@@ -118,7 +118,7 @@
 (define-public (transfer (amount uint) (sender principal) (recipient principal) (memo (optional (buff 34))))
 	(begin
 		(asserts! (or (is-eq tx-sender sender) (is-eq contract-caller sender)) err-not-token-owner)
-		(ft-transfer? dmg-token amount sender recipient)
+		(ft-transfer? charisma amount sender recipient)
 	)
 )
 
@@ -135,11 +135,11 @@
 )
 
 (define-read-only (get-balance (who principal))
-	(ok (+ (ft-get-balance dmg-token who) (ft-get-balance dmg-token-locked who)))
+	(ok (+ (ft-get-balance charisma who) (ft-get-balance charisma-locked who)))
 )
 
 (define-read-only (get-total-supply)
-	(ok (+ (ft-get-supply dmg-token) (ft-get-supply dmg-token-locked)))
+	(ok (+ (ft-get-supply charisma) (ft-get-supply charisma-locked)))
 )
 
 (define-read-only (get-token-uri)
@@ -157,7 +157,7 @@
 )
 
 (define-read-only (dmg-get-locked (owner principal))
-	(ok (ft-get-balance dmg-token-locked owner))
+	(ok (ft-get-balance charisma-locked owner))
 )
 
 ;; --- Extension callback
