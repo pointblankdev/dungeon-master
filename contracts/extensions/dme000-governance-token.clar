@@ -1,5 +1,5 @@
-;; Title: EDE000 Governance Token
-;; Author: Marvin Janssen
+;; Title: DME000 Governance Token
+;; Author: Ross Ragsdale
 ;; Depends-On: 
 ;; Synopsis:
 ;; This extension defines the governance token of DungeonMaster.

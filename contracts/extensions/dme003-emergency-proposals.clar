@@ -1,6 +1,6 @@
-;; Title: EDE003 Emergency Proposals
-;; Author: Marvin Janssen
-;; Depends-On: EDE001
+;; Title: DME003 Emergency Proposals
+;; Author: Ross Ragsdale
+;; Depends-On: DME001
 ;; Synopsis:
 ;; This extension allows for the creation of emergency proposals by a few trusted
 ;; principals.

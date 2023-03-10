@@ -1,6 +1,6 @@
-;; Title: EDE002 Proposal Submission
-;; Author: Marvin Janssen
-;; Depends-On: EDE000, EDE001
+;; Title: DME002 Proposal Submission
+;; Author: Ross Ragsdale
+;; Depends-On: DME000, DME001
 ;; Synopsis:
 ;; This extension part of the core of DungeonMaster. It allows governance token
 ;; holders to submit proposals when they hold at least n% percentage of the

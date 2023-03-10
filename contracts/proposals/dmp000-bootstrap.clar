@@ -1,13 +1,13 @@
-;; Title: EDP000 Bootstrap
-;; Author: Marvin Janssen
+;; Title: DMP000 Bootstrap
+;; Author: Ross Ragsdale
 ;; Synopsis:
 ;; Boot proposal that sets the governance token, DAO parameters, and extensions, and
 ;; mints the initial governance tokens.
 ;; Description:
 ;; Mints the initial supply of governance tokens and enables the the following 
-;; extensions: "EDE000 Governance Token", "EDE001 Proposal Voting",
-;; "EDE002 Proposal Submission", "EDE003 Emergency Proposals",
-;; "EDE004 Emergency Execute".
+;; extensions: "DME000 Governance Token", "DME001 Proposal Voting",
+;; "DME002 Proposal Submission", "DME003 Emergency Proposals",
+;; "DME004 Emergency Execute".
 
 (impl-trait .proposal-trait.proposal-trait)
 

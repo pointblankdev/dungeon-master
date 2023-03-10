@@ -1,9 +1,9 @@
-;; Title: EDP002 Kill Emergency Execute
-;; Author: Marvin Janssen
+;; Title: DMP002 Kill Emergency Execute
+;; Author: Ross Ragsdale
 ;; Synopsis:
-;; This proposal disables extension "EDE004 Emergency Execute".
+;; This proposal disables extension "DME004 Emergency Execute".
 ;; Description:
-;; If this proposal passes, extension "EDE004 Emergency Execute" is immediately
+;; If this proposal passes, extension "DME004 Emergency Execute" is immediately
 ;; disabled.
 
 (impl-trait .proposal-trait.proposal-trait)

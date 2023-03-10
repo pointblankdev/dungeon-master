@@ -31,49 +31,49 @@ DungeonMaster follows a single-address ownership model. The core contract is the
 
 ## Reference extensions
 
-The DungeonMaster code base comes with a few reference extension contracts. These are designated by a code that starts with "EDE" followed by an incrementing number of three digits.
+The DungeonMaster code base comes with a few reference extension contracts. These are designated by a code that starts with "DME" followed by an incrementing number of three digits.
 
-### EDE000: Governance Token
+### DME000: Governance Token
 
 Implements a SIP010 governance token with locking capabilities. The DAO has full control over the minting, burning, transferring, and locking.
 
-### EDE001: Proposal Voting
+### DME001: Proposal Voting
 
 Allows governance token holders to vote on proposals. (Note: _vote_, not _propose_.) One token equals one vote. Tokens used for voting are locked for the duration of the vote. They can then be reclaimed and used again.
 
-### EDE002: Proposal Submission
+### DME002: Proposal Submission
 
-Allows governance token holders that own at least 1% of the supply to submit a proposal to be voted on via EDE001. Proposals that are made this way are subject to a delay of at least 144 blocks (~1 day) to 1004 blocks (~7 days) and run for 1440 blocks (~10 days). All these parameters can be changed by a proposal.
+Allows governance token holders that own at least 1% of the supply to submit a proposal to be voted on via DME001. Proposals that are made this way are subject to a delay of at least 144 blocks (~1 day) to 1004 blocks (~7 days) and run for 1440 blocks (~10 days). All these parameters can be changed by a proposal.
 
-### EDE003: Emergency Proposals
+### DME003: Emergency Proposals
 
-Manages a list of emergency team members that have the ability to submit emergency proposals to EDE001. Such proposals are not subject to a start delay and run for only 144 blocks (~1 day). This extension is subject to a sunset period after which it deactivates. The members, parameters, and sunset period can be changed by a proposal.
+Manages a list of emergency team members that have the ability to submit emergency proposals to DME001. Such proposals are not subject to a start delay and run for only 144 blocks (~1 day). This extension is subject to a sunset period after which it deactivates. The members, parameters, and sunset period can be changed by a proposal.
 
-### EDE004: Emergency Execute
+### DME004: Emergency Execute
 
 Manages a list of executive team members that have the ability to signal for the immediate execution of a proposal. This extension is subject to a sunset period after which it deactivates. The members, parameters, and sunset period can be changed by a proposal.
 
-### EDE005: Dev Fund
+### DME005: Dev Fund
 
 An extension that functions as a development fund. It can hold a governance token balance and manages monthly developer payouts. The developers that receive a payout as well as the amounts can be changed by a proposal.
 
 ## Reference proposals
 
-DungeonMaster also comes with some reference and example proposals. These are designated by a code that starts with "EDP" followed by an incrementing number of three digits. The numbers do not to coincide with extension numbering.
+DungeonMaster also comes with some reference and example proposals. These are designated by a code that starts with "DMP" followed by an incrementing number of three digits. The numbers do not to coincide with extension numbering.
 
-### EDP000: Bootstrap
+### DMP000: Bootstrap
 
 A bootstrapping proposal that is meant to be executed when the DungeonMaster is first deployed. It initialises boot extensions, sets various parameters on them, and mints initial governance tokens.
 
-### EDP001: Dev Fund
+### DMP001: Dev Fund
 
-Enables the EDE005 Dev Fund extension, mints an amount of tokens for it equal to 30% of the current supply, and awards an allowance to two principals.
+Enables the DME005 Dev Fund extension, mints an amount of tokens for it equal to 30% of the current supply, and awards an allowance to two principals.
 
 ### EDO002: Kill Emergency Execute
 
-Immediately disables EDE004 Emergency Execute if it passes.
+Immediately disables DME004 Emergency Execute if it passes.
 
-### EDE003: Whitelist Escrow NFT
+### DME003: Whitelist Escrow NFT
 
 A simple example on how DungeonMaster can manage third-party smart contracts.
 
@@ -88,7 +88,7 @@ Unit tests coming soon, for now you can try it out manually in a `clarinet conso
 To propose `dmp001-dev-fund`, run the following commands one by one:
 
 ```clarity
-;; Submit the proposal via extension EDE002, starting
+;; Submit the proposal via extension DME002, starting
 ;; the voting process at block-height + 144.
 (contract-call? .dme002-proposal-submission propose .dmp001-dev-fund (+ block-height u144))
 

@@ -1,5 +1,5 @@
-;; Title: EDP003 Whitelist Escrow NFT
-;; Author: Marvin Janssen
+;; Title: DMP003 Whitelist Escrow NFT
+;; Author: Ross Ragsdale
 ;; Synopsis:
 ;; An example proposal to illustrate how DungeonMaster can manage external
 ;; ownable contracts.

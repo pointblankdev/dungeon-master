@@ -1,5 +1,5 @@
-;; Title: EDE004 Emergency Execute
-;; Author: Marvin Janssen
+;; Title: DME004 Emergency Execute
+;; Author: Ross Ragsdale
 ;; Depends-On: 
 ;; Synopsis:
 ;; This extension allows a small number of very trusted principals to immediately

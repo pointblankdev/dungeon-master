@@ -1,10 +1,10 @@
-;; Title: EDE005 Dev Fund
-;; Author: Marvin Janssen
-;; Depends-On: EDP000
+;; Title: DME005 Dev Fund
+;; Author: Ross Ragsdale
+;; Depends-On: DMP000
 ;; Synopsis:
 ;; A simple pre-seeded dev fund that can pay out developers on a monthly basis.
 ;; Description:
-;; Initialised by EDP001 Dev Fund. Developers can be awarded a monthly allowance
+;; Initialised by DMP001 Dev Fund. Developers can be awarded a monthly allowance
 ;; and can claim it from this extension. Principals can be added and removed, and
 ;; allowances can be changed via future proposals.
 

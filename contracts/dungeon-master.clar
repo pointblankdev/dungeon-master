@@ -1,4 +1,4 @@
-;; DungeonMaster is the one DAO to rule them all. 
+;; DungeonMaster is the fun DAO to rule them all. 
 ;; By Ross Ragsdale
 
 (use-trait proposal-trait .proposal-trait.proposal-trait)

@@ -1,6 +1,6 @@
-;; Title: EDE001 Proposal Voting
-;; Author: Marvin Janssen
-;; Depends-On: EDE000
+;; Title: DME001 Proposal Voting
+;; Author: Ross Ragsdale
+;; Depends-On: DME000
 ;; Synopsis:
 ;; This extension is part of the core of DungeonMaster. It allows governance token
 ;; holders to vote on and conclude proposals.
