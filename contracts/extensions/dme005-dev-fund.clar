@@ -22,7 +22,7 @@
 ;; --- Authorisation check
 
 (define-public (is-dao-or-extension)
-	(ok (asserts! (or (is-eq tx-sender .executor-dao) (contract-call? .executor-dao is-extension contract-caller)) err-unauthorised))
+	(ok (asserts! (or (is-eq tx-sender .dungeon-master) (contract-call? .dungeon-master is-extension contract-caller)) err-unauthorised))
 )
 
 ;; --- Internal DAO functions
@@ -48,7 +48,7 @@
 (define-public (transfer (amount uint) (recipient principal) (memo (optional (buff 34))))
 	(begin
 		(try! (is-dao-or-extension))
-		(as-contract (contract-call? .ede000-governance-token transfer amount tx-sender recipient memo))
+		(as-contract (contract-call? .dme000-governance-token transfer amount tx-sender recipient memo))
 	)
 )
 
@@ -73,7 +73,7 @@
 		)
 		(asserts! (< claim-count max-claims) err-already-claimed)
 		(map-set claim-counts tx-sender max-claims)
-		(as-contract (contract-call? .ede000-governance-token transfer (* (- max-claims claim-count) (get allowance entry)) tx-sender developer memo))
+		(as-contract (contract-call? .dme000-governance-token transfer (* (- max-claims claim-count) (get allowance entry)) tx-sender developer memo))
 	)
 )
 

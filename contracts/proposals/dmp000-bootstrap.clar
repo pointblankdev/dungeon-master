@@ -14,29 +14,29 @@
 (define-public (execute (sender principal))
 	(begin
 		;; Enable genesis extensions.
-		(try! (contract-call? .executor-dao set-extensions
+		(try! (contract-call? .dungeon-master set-extensions
 			(list
-				{extension: .ede000-governance-token, enabled: true}
-				{extension: .ede001-proposal-voting, enabled: true}
-				{extension: .ede002-proposal-submission, enabled: true}
-				{extension: .ede003-emergency-proposals, enabled: true}
-				{extension: .ede004-emergency-execute, enabled: true}
+				{extension: .dme000-governance-token, enabled: true}
+				{extension: .dme001-proposal-voting, enabled: true}
+				{extension: .dme002-proposal-submission, enabled: true}
+				{extension: .dme003-emergency-proposals, enabled: true}
+				{extension: .dme004-emergency-execute, enabled: true}
 			)
 		))
 
 		;; Set emergency team members.
-		(try! (contract-call? .ede003-emergency-proposals set-emergency-team-member 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM true))
-		(try! (contract-call? .ede003-emergency-proposals set-emergency-team-member 'ST1SJ3DTE5DN7X54YDH5D64R3BCB6A2AG2ZQ8YPD5 true))
+		(try! (contract-call? .dme003-emergency-proposals set-emergency-team-member 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM true))
+		(try! (contract-call? .dme003-emergency-proposals set-emergency-team-member 'ST1SJ3DTE5DN7X54YDH5D64R3BCB6A2AG2ZQ8YPD5 true))
 
 		;; Set executive team members.
-		(try! (contract-call? .ede004-emergency-execute set-executive-team-member 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM true))
-		(try! (contract-call? .ede004-emergency-execute set-executive-team-member 'ST1SJ3DTE5DN7X54YDH5D64R3BCB6A2AG2ZQ8YPD5 true))
-		(try! (contract-call? .ede004-emergency-execute set-executive-team-member 'ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG true))
-		(try! (contract-call? .ede004-emergency-execute set-executive-team-member 'ST2JHG361ZXG51QTKY2NQCVBPPRRE2KZB1HR05NNC true))
-		(try! (contract-call? .ede004-emergency-execute set-signals-required u3)) ;; signal from 3 out of 4 team members requied.
+		(try! (contract-call? .dme004-emergency-execute set-executive-team-member 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM true))
+		(try! (contract-call? .dme004-emergency-execute set-executive-team-member 'ST1SJ3DTE5DN7X54YDH5D64R3BCB6A2AG2ZQ8YPD5 true))
+		(try! (contract-call? .dme004-emergency-execute set-executive-team-member 'ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG true))
+		(try! (contract-call? .dme004-emergency-execute set-executive-team-member 'ST2JHG361ZXG51QTKY2NQCVBPPRRE2KZB1HR05NNC true))
+		(try! (contract-call? .dme004-emergency-execute set-signals-required u3)) ;; signal from 3 out of 4 team members requied.
 
 		;; Mint initial token supply.
-		(try! (contract-call? .ede000-governance-token edg-mint-many
+		(try! (contract-call? .dme000-governance-token edg-mint-many
 			(list
 				{amount: u1000, recipient: sender}
 				{amount: u1000, recipient: 'ST1SJ3DTE5DN7X54YDH5D64R3BCB6A2AG2ZQ8YPD5}
@@ -51,7 +51,7 @@
 			)
 		))
 
-		(print "ExecutorDAO has risen.")
+		(print "DungeonMaster has risen.")
 		(ok true)
 	)
 )

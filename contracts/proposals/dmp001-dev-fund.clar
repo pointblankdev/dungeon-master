@@ -17,14 +17,14 @@
 (define-public (execute (sender principal))
 	(let
 		(
-			(total-supply (unwrap-panic (contract-call? .ede000-governance-token get-total-supply)))
+			(total-supply (unwrap-panic (contract-call? .dme000-governance-token get-total-supply)))
 			(dev-fund-amount (/ (* total-supply dev-fund-percentage) u100))
 		)
-		(try! (contract-call? .executor-dao set-extension .ede005-dev-fund true))
-		(try! (contract-call? .ede005-dev-fund set-developer-allowances (list
+		(try! (contract-call? .dungeon-master set-extension .dme005-dev-fund true))
+		(try! (contract-call? .dme005-dev-fund set-developer-allowances (list
 			{who: 'ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG, start-height: block-height, allowance: u100}
 			{who: 'ST2JHG361ZXG51QTKY2NQCVBPPRRE2KZB1HR05NNC, start-height: block-height, allowance: u20}
 		)))
-		(contract-call? .ede000-governance-token edg-mint dev-fund-amount .ede005-dev-fund)
+		(contract-call? .dme000-governance-token edg-mint dev-fund-amount .dme005-dev-fund)
 	)
 )

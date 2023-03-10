@@ -1,13 +1,13 @@
 ;; Title: EDP003 Whitelist Escrow NFT
 ;; Author: Marvin Janssen
 ;; Synopsis:
-;; An example proposal to illustrate how ExecutorDAO can manage external
+;; An example proposal to illustrate how DungeonMaster can manage external
 ;; ownable contracts.
 ;; Description:
-;; ExecutorDAO is well-equiped to manage external contracts feature have
+;; DungeonMaster is well-equiped to manage external contracts feature have
 ;; some form of ownership. This proposal updates the whitelist of an
-;; example escrow contract that is owned by the ExecutorDAO contract.
-;; Note that the ExecutorDAO contract must be the owner of nft-escrow
+;; example escrow contract that is owned by the DungeonMaster contract.
+;; Note that the DungeonMaster contract must be the owner of nft-escrow
 ;; for this proposal to be executed.
 
 (impl-trait .proposal-trait.proposal-trait)

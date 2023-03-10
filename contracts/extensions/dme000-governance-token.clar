@@ -2,11 +2,11 @@
 ;; Author: Marvin Janssen
 ;; Depends-On: 
 ;; Synopsis:
-;; This extension defines the governance token of ExecutorDAO.
+;; This extension defines the governance token of DungeonMaster.
 ;; Description:
 ;; The governance token is a simple SIP010-compliant fungible token
 ;; with some added functions to make it easier to manage by
-;; ExecutorDAO proposals and extensions.
+;; DungeonMaster proposals and extensions.
 
 (impl-trait .governance-token-trait.governance-token-trait)
 (impl-trait .sip010-ft-trait.sip010-ft-trait)
@@ -18,15 +18,15 @@
 (define-fungible-token edg-token)
 (define-fungible-token edg-token-locked)
 
-(define-data-var token-name (string-ascii 32) "ExecutorDAO Governance Token")
-(define-data-var token-symbol (string-ascii 10) "EDG")
+(define-data-var token-name (string-ascii 32) "Influence")
+(define-data-var token-symbol (string-ascii 10) "INF")
 (define-data-var token-uri (optional (string-utf8 256)) none)
 (define-data-var token-decimals uint u6)
 
 ;; --- Authorisation check
 
 (define-public (is-dao-or-extension)
-	(ok (asserts! (or (is-eq tx-sender .executor-dao) (contract-call? .executor-dao is-extension contract-caller)) err-unauthorised))
+	(ok (asserts! (or (is-eq tx-sender .dungeon-master) (contract-call? .dungeon-master is-extension contract-caller)) err-unauthorised))
 )
 
 ;; --- Internal DAO functions

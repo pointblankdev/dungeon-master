@@ -32,7 +32,7 @@
 ;; --- Authorisation check
 
 (define-public (is-dao-or-extension)
-	(ok (asserts! (or (is-eq tx-sender .executor-dao) (contract-call? .executor-dao is-extension contract-caller)) err-unauthorised))
+	(ok (asserts! (or (is-eq tx-sender .dungeon-master) (contract-call? .dungeon-master is-extension contract-caller)) err-unauthorised))
 )
 
 ;; --- Internal DAO functions
@@ -86,7 +86,7 @@
 		(asserts! (is-executive-team-member tx-sender) err-not-executive-team-member)
 		(asserts! (< block-height (var-get executive-team-sunset-height)) err-sunset-height-reached)
 		(and (>= signals (var-get executive-signals-required))
-			(try! (contract-call? .executor-dao execute proposal tx-sender))
+			(try! (contract-call? .dungeon-master execute proposal tx-sender))
 		)
 		(map-set executive-action-signals {proposal: proposal-principal, team-member: tx-sender} true)
 		(map-set executive-action-signal-count proposal-principal signals)

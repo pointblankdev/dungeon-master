@@ -28,7 +28,7 @@
 ;; --- Authorisation check
 
 (define-public (is-dao-or-extension)
-	(ok (asserts! (or (is-eq tx-sender .executor-dao) (contract-call? .executor-dao is-extension contract-caller)) err-unauthorised))
+	(ok (asserts! (or (is-eq tx-sender .dungeon-master) (contract-call? .dungeon-master is-extension contract-caller)) err-unauthorised))
 )
 
 ;; --- Internal DAO functions
@@ -65,7 +65,7 @@
 	(begin
 		(asserts! (is-emergency-team-member tx-sender) err-not-emergency-team-member)
 		(asserts! (< block-height (var-get emergency-team-sunset-height)) err-sunset-height-reached)
-		(contract-call? .ede001-proposal-voting add-proposal proposal
+		(contract-call? .dme001-proposal-voting add-proposal proposal
 			{
 				start-block-height: block-height,
 				end-block-height: (+ block-height (var-get emergency-proposal-duration)),

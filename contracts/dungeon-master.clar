@@ -1,5 +1,5 @@
-;; ExecutorDAO is the one DAO to rule them all. 
-;; By Marvin Janssen
+;; DungeonMaster is the one DAO to rule them all. 
+;; By Ross Ragsdale
 
 (use-trait proposal-trait .proposal-trait.proposal-trait)
 (use-trait extension-trait .extension-trait.extension-trait)

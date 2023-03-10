@@ -9,5 +9,5 @@
 (impl-trait .proposal-trait.proposal-trait)
 
 (define-public (execute (sender principal))
-	(contract-call? .executor-dao set-extension .ede004-emergency-execute false)
+	(contract-call? .dungeon-master set-extension .dme004-emergency-execute false)
 )

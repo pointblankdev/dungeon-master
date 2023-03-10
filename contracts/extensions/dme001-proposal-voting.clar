@@ -2,7 +2,7 @@
 ;; Author: Marvin Janssen
 ;; Depends-On: EDE000
 ;; Synopsis:
-;; This extension is part of the core of ExecutorDAO. It allows governance token
+;; This extension is part of the core of DungeonMaster. It allows governance token
 ;; holders to vote on and conclude proposals.
 ;; Description:
 ;; Once proposals are submitted, they are open for voting after a lead up time
@@ -43,7 +43,7 @@
 ;; --- Authorisation check
 
 (define-public (is-dao-or-extension)
-	(ok (asserts! (or (is-eq tx-sender .executor-dao) (contract-call? .executor-dao is-extension contract-caller)) err-unauthorised))
+	(ok (asserts! (or (is-eq tx-sender .dungeon-master) (contract-call? .dungeon-master is-extension contract-caller)) err-unauthorised))
 )
 
 ;; --- Internal DAO functions
@@ -53,7 +53,7 @@
 (define-public (add-proposal (proposal <proposal-trait>) (data {start-block-height: uint, end-block-height: uint, proposer: principal}))
 	(begin
 		(try! (is-dao-or-extension))
-		(asserts! (is-none (contract-call? .executor-dao executed-at proposal)) err-proposal-already-executed)
+		(asserts! (is-none (contract-call? .dungeon-master executed-at proposal)) err-proposal-already-executed)
 		(print {event: "propose", proposal: proposal, proposer: tx-sender})
 		(ok (asserts! (map-insert proposals (contract-of proposal) (merge {votes-for: u0, votes-against: u0, concluded: false, passed: false} data)) err-proposal-already-exists))
 	)
@@ -90,7 +90,7 @@
 			)
 		)
 		(print {event: "vote", proposal: proposal, voter: tx-sender, for: for, amount: amount})
-		(contract-call? .ede000-governance-token edg-lock amount tx-sender)
+		(contract-call? .dme000-governance-token edg-lock amount tx-sender)
 	)
 )
 
@@ -106,7 +106,7 @@
 		(asserts! (>= block-height (get end-block-height proposal-data)) err-end-block-height-not-reached)
 		(map-set proposals (contract-of proposal) (merge proposal-data {concluded: true, passed: passed}))
 		(print {event: "conclude", proposal: proposal, passed: passed})
-		(and passed (try! (contract-call? .executor-dao execute proposal tx-sender)))
+		(and passed (try! (contract-call? .dungeon-master execute proposal tx-sender)))
 		(ok passed)
 	)
 )
@@ -122,7 +122,7 @@
 		)
 		(asserts! (get concluded proposal-data) err-proposal-not-concluded)
 		(map-delete member-total-votes {proposal: proposal-principal, voter: tx-sender})
-		(contract-call? .ede000-governance-token edg-unlock votes tx-sender)
+		(contract-call? .dme000-governance-token edg-unlock votes tx-sender)
 	)
 )
 
