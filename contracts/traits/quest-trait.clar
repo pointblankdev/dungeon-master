@@ -1,7 +1,6 @@
-;; WIP
-
 (define-trait quest-trait
 	(
-		(complete () (response bool uint))
+		;; an optional URI that represents metadata of this quest
+		(get-quest-uri () (response (optional (string-utf8 256)) uint))
 	)
 )
