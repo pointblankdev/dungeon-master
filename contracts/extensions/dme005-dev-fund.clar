@@ -5,8 +5,8 @@
 ;; A simple pre-seeded dev fund that can pay out developers on a monthly basis.
 ;; Description:
 ;; Initialised by DMP001 Dev Fund. Developers can be awarded a monthly allowance
-;; and can claim it from this extension. Principals can be added and removed, and
-;; allowances can be changed via future proposals.
+;; and can claim it from this extension. Principals can be added and removed, 
+;; and allowances can be changed via future proposals.
 
 (impl-trait .extension-trait.extension-trait)
 

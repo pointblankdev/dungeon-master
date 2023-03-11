@@ -2,8 +2,8 @@
 ;; Author: Ross Ragsdale
 ;; Depends-On: DME001
 ;; Synopsis:
-;; This extension allows for the creation of emergency proposals by a few trusted
-;; principals.
+;; This extension allows for the creation of 
+;; emergency proposals by a few trusted principals.
 ;; Description:
 ;; Emergency proposals have a voting period of roughly 1 day, instead of the
 ;; normal proposal duration. Only a list of trusted principals, designated as the

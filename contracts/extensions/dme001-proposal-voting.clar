@@ -2,14 +2,14 @@
 ;; Author: Ross Ragsdale
 ;; Depends-On: DME000
 ;; Synopsis:
-;; This extension is part of the core of DungeonMaster. It allows governance token
-;; holders to vote on and conclude proposals.
+;; This extension is part of the core of DungeonMaster.
+;; It allows governance token holders to vote on and conclude proposals.
 ;; Description:
 ;; Once proposals are submitted, they are open for voting after a lead up time
 ;; passes. Any token holder may vote on an open proposal, where one token equals
 ;; one vote. Members can vote until the voting period is over. After this period
 ;; anyone may trigger a conclusion. The proposal will then be executed if the
-;; votes in favour exceed the ones against.
+;; votes in favor exceed the ones against.
 
 (impl-trait .extension-trait.extension-trait)
 (use-trait proposal-trait .proposal-trait.proposal-trait)

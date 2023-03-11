@@ -3,8 +3,7 @@
 ;; Depends-On: DME000, DME001
 ;; Synopsis:
 ;; This extension part of the core of DungeonMaster. It allows governance token
-;; holders to submit proposals when they hold at least n% percentage of the
-;; token supply.
+;; holders to submit proposals when they hold at least n% percentage of the token supply.
 ;; Description:
 ;; Proposals may be submitted by anyone that holds at least n% of governance
 ;; tokens. Any submission is subject to a pre-defined start delay before voting

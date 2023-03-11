@@ -2,8 +2,8 @@
 ;; Author: Ross Ragsdale
 ;; Depends-On: 
 ;; Synopsis:
-;; This extension allows a small number of very trusted principals to immediately
-;; execute a proposal once a super majority is reached.
+;; This extension allows a small number of very trusted principals 
+;; to immediately execute a proposal once a super majority is reached.
 ;; Description:
 ;; An extension meant for the bootstrapping period of a DAO. It temporarily gives
 ;; some very trusted principals the ability to perform an "executive action";
