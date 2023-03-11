@@ -14,7 +14,7 @@
 (impl-trait .extension-trait.extension-trait)
 (use-trait proposal-trait .proposal-trait.proposal-trait)
 
-(define-constant err-unauthorised (err u3000))
+(define-constant err-unauthorized (err u3000))
 (define-constant err-proposal-already-executed (err u3002))
 (define-constant err-proposal-already-exists (err u3003))
 (define-constant err-unknown-proposal (err u3004))
@@ -40,10 +40,10 @@
 
 (define-map member-total-votes {proposal: principal, voter: principal} uint)
 
-;; --- Authorisation check
+;; --- Authorization check
 
 (define-public (is-dao-or-extension)
-	(ok (asserts! (or (is-eq tx-sender .dungeon-master) (contract-call? .dungeon-master is-extension contract-caller)) err-unauthorised))
+	(ok (asserts! (or (is-eq tx-sender .dungeon-master) (contract-call? .dungeon-master is-extension contract-caller)) err-unauthorized))
 )
 
 ;; --- Internal DAO functions

@@ -18,17 +18,17 @@
 (define-data-var emergency-proposal-duration uint u144) ;; ~1 day
 (define-data-var emergency-team-sunset-height uint (+ block-height u13140)) ;; ~3 months from deploy time
 
-(define-constant err-unauthorised (err u3000))
+(define-constant err-unauthorized (err u3000))
 (define-constant err-not-emergency-team-member (err u3001))
 (define-constant err-sunset-height-reached (err u3002))
 (define-constant err-sunset-height-in-past (err u3003))
 
 (define-map emergency-team principal bool)
 
-;; --- Authorisation check
+;; --- Authorization check
 
 (define-public (is-dao-or-extension)
-	(ok (asserts! (or (is-eq tx-sender .dungeon-master) (contract-call? .dungeon-master is-extension contract-caller)) err-unauthorised))
+	(ok (asserts! (or (is-eq tx-sender .dungeon-master) (contract-call? .dungeon-master is-extension contract-caller)) err-unauthorized))
 )
 
 ;; --- Internal DAO functions

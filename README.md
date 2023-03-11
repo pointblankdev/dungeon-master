@@ -14,7 +14,7 @@ The way a conventional company operates is defined in its constitution. Changes 
 
 ## 2. The core executes, the extensions give form
 
-DungeonMaster initially consists of just one core contract. Its sole purpose is to execute proposals and to keep a list of authorised extensions. There are no other features: no token, no voting, no functions. The DAO is given form by means of so-called extension contracts. Extensions are contracts that can be enabled or disabled by proposals and add specific features to the DAO. They are allowed to assume the "sending context" of the DAO and can thus enact change. Since different groups and organisations have different needs, extensions are rather varied. Some example functionality that can be added to DungeonMaster via an extension include:
+DungeonMaster initially consists of just one core contract. Its sole purpose is to execute proposals and to keep a list of authorized extensions. There are no other features: no token, no voting, no functions. The DAO is given form by means of so-called extension contracts. Extensions are contracts that can be enabled or disabled by proposals and add specific features to the DAO. They are allowed to assume the "sending context" of the DAO and can thus enact change. Since different groups and organisations have different needs, extensions are rather varied. Some example functionality that can be added to DungeonMaster via an extension include:
 
 - The issuance and management of a governance token.
 - The ability to submit proposals.
@@ -23,7 +23,7 @@ DungeonMaster initially consists of just one core contract. Its sole purpose is 
 - Salary payouts to specific members.
 - And more...
 
-Since extensions become part of the DAO, they have privileged access to everything else included in the DAO. The trick that allows for extension interoperability is a common authorisation check. Privileged access is granted when the sending context is equal to that of the DAO or if the contract caller is an enabled DAO extension. It allows for extensions that depend on other extensions to be designed. They can be disabled and replaced at any time making DungeonMaster fully polymorphic.
+Since extensions become part of the DAO, they have privileged access to everything else included in the DAO. The trick that allows for extension interoperability is a common authorization check. Privileged access is granted when the sending context is equal to that of the DAO or if the contract caller is an enabled DAO extension. It allows for extensions that depend on other extensions to be designed. They can be disabled and replaced at any time making DungeonMaster fully polymorphic.
 
 ## 3. Ownership control happens via sending context
 

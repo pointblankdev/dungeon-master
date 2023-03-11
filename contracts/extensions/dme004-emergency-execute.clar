@@ -17,7 +17,7 @@
 
 (define-data-var executive-team-sunset-height uint (+ block-height u4380)) ;; ~1 month from deploy time
 
-(define-constant err-unauthorised (err u3000))
+(define-constant err-unauthorized (err u3000))
 (define-constant err-not-executive-team-member (err u3001))
 (define-constant err-already-executed (err u3002))
 (define-constant err-sunset-height-reached (err u3003))
@@ -29,10 +29,10 @@
 
 (define-data-var executive-signals-required uint u1) ;; signals required for an executive action.
 
-;; --- Authorisation check
+;; --- Authorization check
 
 (define-public (is-dao-or-extension)
-	(ok (asserts! (or (is-eq tx-sender .dungeon-master) (contract-call? .dungeon-master is-extension contract-caller)) err-unauthorised))
+	(ok (asserts! (or (is-eq tx-sender .dungeon-master) (contract-call? .dungeon-master is-extension contract-caller)) err-unauthorized))
 )
 
 ;; --- Internal DAO functions

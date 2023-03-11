@@ -12,7 +12,7 @@
 (impl-trait .sip010-ft-trait.sip010-ft-trait)
 (impl-trait .extension-trait.extension-trait)
 
-(define-constant err-unauthorised (err u3000))
+(define-constant err-unauthorized (err u3000))
 (define-constant err-not-token-owner (err u4))
 
 (define-fungible-token charisma)
@@ -23,10 +23,10 @@
 (define-data-var token-uri (optional (string-utf8 256)) none)
 (define-data-var token-decimals uint u6)
 
-;; --- Authorisation check
+;; --- Authorization check
 
 (define-public (is-dao-or-extension)
-	(ok (asserts! (or (is-eq tx-sender .dungeon-master) (contract-call? .dungeon-master is-extension contract-caller)) err-unauthorised))
+	(ok (asserts! (or (is-eq tx-sender .dungeon-master) (contract-call? .dungeon-master is-extension contract-caller)) err-unauthorized))
 )
 
 ;; --- Internal DAO functions

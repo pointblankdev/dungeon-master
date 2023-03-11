@@ -12,17 +12,17 @@
 
 (define-constant one-month-time u4380) ;; 43,800 minutes / 10 minute average block time.
 
-(define-constant err-unauthorised (err u3000))
+(define-constant err-unauthorized (err u3000))
 (define-constant err-no-allowance (err u3001))
 (define-constant err-already-claimed (err u3002))
 
 (define-map monthly-developer-allowances principal {start-height: uint, allowance: uint})
 (define-map claim-counts principal uint)
 
-;; --- Authorisation check
+;; --- Authorization check
 
 (define-public (is-dao-or-extension)
-	(ok (asserts! (or (is-eq tx-sender .dungeon-master) (contract-call? .dungeon-master is-extension contract-caller)) err-unauthorised))
+	(ok (asserts! (or (is-eq tx-sender .dungeon-master) (contract-call? .dungeon-master is-extension contract-caller)) err-unauthorized))
 )
 
 ;; --- Internal DAO functions
