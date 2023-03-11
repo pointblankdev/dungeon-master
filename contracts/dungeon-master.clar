@@ -4,7 +4,7 @@
 (use-trait proposal-trait .proposal-trait.proposal-trait)
 (use-trait extension-trait .extension-trait.extension-trait)
 
-(define-constant err-unauthorised (err u1000))
+(define-constant err-unauthorized (err u1000))
 (define-constant err-already-executed (err u1001))
 (define-constant err-invalid-extension (err u1002))
 
@@ -12,10 +12,10 @@
 (define-map executed-proposals principal uint)
 (define-map extensions principal bool)
 
-;; --- Authorisation check
+;; --- Authorization check
 
 (define-private (is-self-or-extension)
-	(ok (asserts! (or (is-eq tx-sender (as-contract tx-sender)) (is-extension contract-caller)) err-unauthorised))
+	(ok (asserts! (or (is-eq tx-sender (as-contract tx-sender)) (is-extension contract-caller)) err-unauthorized))
 )
 
 ;; --- Extensions
@@ -65,7 +65,7 @@
 
 (define-public (construct (proposal <proposal-trait>))
 	(let ((sender tx-sender))
-		(asserts! (is-eq sender (var-get executive)) err-unauthorised)
+		(asserts! (is-eq sender (var-get executive)) err-unauthorized)
 		(var-set executive (as-contract tx-sender))
 		(as-contract (execute proposal sender))
 	)
