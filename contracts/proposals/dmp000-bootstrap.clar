@@ -51,7 +51,7 @@
 			)
 		))
 
-		(print "DungeonMaster has risen.")
+		(print "You are not entering this world in the usual manner, for you are setting forth to be a Dungeon Master. Certainly there are stout fighters, mighty magic-users, wily thieves, and courageous clerics who will make their mark in the magical lands of bitgear adventure. You however, are above even the greatest of these, for as DM you are to become the Shaper of the Cosmos. It is you who will give form and content to the all the universe. You will breathe life into the stillness, giving meaning and purpose to all the actions which are to follow.")
 		(ok true)
 	)
 )
