@@ -3,6 +3,12 @@ name = "dungeon-master"
 requirements = []
 costs_version = 2
 
+[contracts.dungeon-master]
+path = "contracts/dungeon-master.clar"
+depends_on = ["proposal-trait", "extension-trait"]
+
+# extentions
+
 [contracts.dme000-governance-token]
 path = "contracts/extensions/dme000-governance-token.clar"
 depends_on = ["dungeon-master", "governance-token-trait", "sip010-ft-trait"]
@@ -23,29 +29,47 @@ depends_on = ["dungeon-master", "extension-trait", "dme001-proposal-voting"]
 path = "contracts/extensions/dme004-emergency-execute.clar"
 depends_on = ["dungeon-master", "extension-trait", "dme001-proposal-voting"]
 
-[contracts.dme005-dev-fund]
-path = "contracts/extensions/dme005-dev-fund.clar"
+[contracts.dme005-genesis-stx-transfer]
+path = "contracts/extensions/dme005-genesis-stx-transfer.clar"
+depends_on = ["dungeon-master", "extension-trait", "dme001-proposal-voting", "bitgear-genesis"]
+
+[contracts.dme100-dev-fund]
+path = "contracts/extensions/dme100-dev-fund.clar"
 depends_on = ["dungeon-master", "extension-trait", "dme000-governance-token"]
+
+# external
+
+[contracts.bitgear-genesis]
+path = "contracts/external/bitgear-genesis.clar"
+depends_on = ["nft-trait"]
+
+[contracts.nft-escrow]
+path = "contracts/external/nft-escrow.clar"
+depends_on = ["ownable-trait"]
+
+# proposals
 
 [contracts.dmp000-bootstrap]
 path = "contracts/proposals/dmp000-bootstrap.clar"
 depends_on = ["dungeon-master", "proposal-trait", "extension-trait", "dme000-governance-token", "dme001-proposal-voting", "dme002-proposal-submission", "dme003-emergency-proposals", "dme004-emergency-execute"]
 
-[contracts.dmp001-dev-fund]
-path = "contracts/proposals/dmp001-dev-fund.clar"
+[contracts.dmp001-annex-bitgear-genesis]
+path = "contracts/proposals/dmp001-annex-bitgear-genesis.clar"
+depends_on = ["dungeon-master", "proposal-trait", "dme005-genesis-stx-transfer"]
+
+[contracts.dmp100-dev-fund]
+path = "contracts/proposals/dmp100-dev-fund.clar"
 depends_on = ["dme000-governance-token", "dungeon-master"]
 
-[contracts.dmp002-kill-emergency-execute]
-path = "contracts/proposals/dmp002-kill-emergency-execute.clar"
+[contracts.dmp101-kill-emergency-execute]
+path = "contracts/proposals/dmp101-kill-emergency-execute.clar"
 depends_on = ["dme004-emergency-execute", "dungeon-master"]
 
-[contracts.dmp003-whitelist-escrow-nft]
-path = "contracts/proposals/dmp003-whitelist-escrow-nft.clar"
+[contracts.dmp102-whitelist-escrow-nft]
+path = "contracts/proposals/dmp102-whitelist-escrow-nft.clar"
 depends_on = ["proposal-trait", "nft-escrow"]
 
-[contracts.dungeon-master]
-path = "contracts/dungeon-master.clar"
-depends_on = ["proposal-trait", "extension-trait"]
+# traits
 
 [contracts.extension-trait]
 path = "contracts/traits/extension-trait.clar"
@@ -54,10 +78,6 @@ depends_on = []
 [contracts.governance-token-trait]
 path = "contracts/traits/governance-token-trait.clar"
 depends_on = []
-
-[contracts.nft-escrow]
-path = "contracts/external/nft-escrow.clar"
-depends_on = ["ownable-trait"]
 
 [contracts.ownable-trait]
 path = "contracts/traits/ownable-trait.clar"
@@ -69,4 +89,8 @@ depends_on = []
 
 [contracts.sip010-ft-trait]
 path = "contracts/traits/sip010-ft-trait.clar"
+depends_on = []
+
+[contracts.nft-trait]
+path = "contracts/traits/nft-trait.clar"
 depends_on = []
