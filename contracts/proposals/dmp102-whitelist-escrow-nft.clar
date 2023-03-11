@@ -1,8 +1,8 @@
-;; Title: DMP003 Whitelist Escrow NFT
+;; Title: DMP102 Whitelist Escrow NFT
 ;; Author: Ross Ragsdale
 ;; Synopsis:
-;; An example proposal to illustrate how DungeonMaster can manage external
-;; ownable contracts.
+;; An example proposal to illustrate how 
+;; DungeonMaster can manage external ownable contracts.
 ;; Description:
 ;; DungeonMaster is well-equiped to manage external contracts feature have
 ;; some form of ownership. This proposal updates the whitelist of an

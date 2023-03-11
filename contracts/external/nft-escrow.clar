@@ -1,6 +1,6 @@
 ;; An example external contract to show how the DungeonMaster is able to
-;; manage external contracts that might not be aware of the DAO. See
-;; dmp003-whitelist-escrow-nft for more details.
+;; manage external contracts that might not be aware of the DAO. 
+;; See dmp102-whitelist-escrow-nft for more details.
 
 (impl-trait .ownable-trait.ownable-trait)
 
