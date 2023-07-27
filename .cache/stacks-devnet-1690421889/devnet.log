@@ -1,0 +1,31 @@
+Jul 27 01:38:09.718 INFO Checking contracts
+Jul 27 01:38:09.735 INFO Starting Devnet
+Jul 27 01:38:09.738 INFO Initiating Devnet boot sequence (working_dir: /home/rozar/Documents/stacks/dungeon-master/.cache/stacks-devnet-1690421889)
+Jul 27 01:38:09.739 INFO Creating network dungeon-master.devnet
+Jul 27 01:38:09.739 INFO Starting bitcoin-node
+Jul 27 01:38:12.201 INFO Created container bitcoin-node: 6336df1896731e2105dfddaa52be114a0f3d3bc273b643fbf0d50696226d0020
+Jul 27 01:38:12.754 INFO Configuring bitcoin-node
+Jul 27 01:38:13.755 INFO Waiting for bitcoin-node
+Jul 27 01:38:13.813 INFO Registering addr(n3GRiDLKWuKLCw1DZmV75W1mE35qmW2tQm)#dm832d0a
+Jul 27 01:38:13.855 INFO Registering addr(mjSrB3wS4xab3kYqFktwBzfTdPg367ZJ2d)#kdxvqwc5
+Jul 27 01:38:14.664 INFO Registering addr(mqVnk6NPRdhntvfm4hh9vvjiRkFDUuSYsH)#ypxkdrsq
+Jul 27 01:38:14.935 INFO Registering addr(mr1iPkD9N3RJZZxXRk7xF9d36gffa6exNC)#n3uhsuqz
+Jul 27 01:38:15.212 INFO Registering addr(muYdXKmX9bByAueDe6KFfHd5Ff1gdN9ErG)#0ayck9fm
+Jul 27 01:38:15.484 INFO Registering addr(mvZtbibDAAA3WLpY7zXXFqRa3T4XSknBX7)#hkf7ujwt
+Jul 27 01:38:15.771 INFO Registering addr(mg1C76bNTutiCDV3t9nWhZs3Dc8LzUufj8)#gtqjph77
+Jul 27 01:38:16.047 INFO Registering addr(mweN5WVqadScHdA81aATSdcVr4B6dNokqx)#qz3ysrq0
+Jul 27 01:38:16.321 INFO Registering addr(mzxXgV6e4BZSsz8zVHm3TmqbECt7mbuErt)#pnqz0pm8
+Jul 27 01:38:16.598 INFO Registering addr(n37mwmru2oaVosgfuvzBwgV2ysCQRrLko7)#lh2paj0q
+Jul 27 01:38:16.873 INFO Registering addr(n2v875jbJ4RjBnTjgbfikDfnwsDV5iUByw)#8606llct
+Jul 27 01:38:17.147 INFO Registering addr(mjSrB3wS4xab3kYqFktwBzfTdPg367ZJ2d)#kdxvqwc5
+Jul 27 01:38:17.421 INFO Starting postgres
+Jul 27 01:38:36.539 INFO Created container postgres: 369458fdc01e2677d13e4eff6ddccbc0ec66eaa3948efc7d3b046ddc0acfca36
+Jul 27 01:38:36.743 ERRO Fatal: unable to start postgres container: {"message":"driver failed programming external connectivity on endpoint postgres.dungeon-master.devnet (84a59ec0158cfc757e644b77f608fa49ed6d97ed13a5df20e9f5cb12d446c113): Error starting userland proxy: listen tcp4 0.0.0.0:5432: bind: address already in use"}
+
+Jul 27 01:38:36.743 INFO Handling Termination command
+Jul 27 01:38:37.112 INFO Terminating bitcoin-node
+Jul 27 01:38:37.113 INFO Terminating postgres
+Jul 27 01:38:37.271 INFO Pruning network and containers
+Jul 27 01:38:37.273 INFO Artifacts (logs, conf, chainstates) available here: /home/rozar/Documents/stacks/dungeon-master/.cache/stacks-devnet-1690421889
+Jul 27 01:38:37.273 INFO ⚠️  fatal error - unable to start postgres container: {"message":"driver failed programming external connectivity on endpoint postgres.dungeon-master.devnet (84a59ec0158cfc757e644b77f608fa49ed6d97ed13a5df20e9f5cb12d446c113): Error starting userland proxy: listen tcp4 0.0.0.0:5432: bind: address already in use"}
+

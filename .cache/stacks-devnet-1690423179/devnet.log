@@ -1,0 +1,10 @@
+Jul 27 01:59:39.147 INFO Checking contracts
+Jul 27 01:59:39.165 INFO Starting Devnet
+Jul 27 01:59:39.171 INFO Initiating Devnet boot sequence (working_dir: /home/rozar/Documents/stacks/dungeon-master/.cache/stacks-devnet-1690423179)
+Jul 27 01:59:39.174 INFO Creating network dungeon-master.devnet
+Jul 27 01:59:39.175 INFO Starting bitcoin-node
+Jul 27 01:59:40.254 ERRO Fatal: unable to create bitcoind container: DockerResponseConflictError { message: "{\"message\":\"Conflict. The container name \\\"/bitcoin-node.dungeon-master.devnet\\\" is already in use by container \\\"de9983967a8bb711017be12024a0b594010c3438da127050016a4bb8dbc6dfe6\\\". You have to remove (or rename) that container to be able to reuse that name.\"}\n" }
+Jul 27 01:59:40.254 INFO Handling Termination command
+Jul 27 01:59:40.255 INFO Pruning network and containers
+Jul 27 01:59:40.412 INFO Artifacts (logs, conf, chainstates) available here: /home/rozar/Documents/stacks/dungeon-master/.cache/stacks-devnet-1690423179
+Jul 27 01:59:40.412 INFO ⚠️  fatal error - unable to create bitcoind container: DockerResponseConflictError { message: "{\"message\":\"Conflict. The container name \\\"/bitcoin-node.dungeon-master.devnet\\\" is already in use by container \\\"de9983967a8bb711017be12024a0b594010c3438da127050016a4bb8dbc6dfe6\\\". You have to remove (or rename) that container to be able to reuse that name.\"}\n" }

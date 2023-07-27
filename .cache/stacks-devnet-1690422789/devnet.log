@@ -1,0 +1,36 @@
+Jul 27 01:53:09.858 INFO Checking contracts
+Jul 27 01:53:09.877 INFO Starting Devnet
+Jul 27 01:53:09.883 INFO Initiating Devnet boot sequence (working_dir: /home/rozar/Documents/stacks/dungeon-master/.cache/stacks-devnet-1690422789)
+Jul 27 01:53:09.886 INFO Creating network dungeon-master.devnet
+Jul 27 01:53:09.886 INFO Starting bitcoin-node
+Jul 27 01:53:11.152 INFO Created container bitcoin-node: 81e2e58cba7ecdb3905b7d01cc2c93f699ae60c06a7110fc1243fa9b7b0212de
+Jul 27 01:53:11.967 INFO Configuring bitcoin-node
+Jul 27 01:53:12.968 INFO Waiting for bitcoin-node
+Jul 27 01:53:13.032 INFO Registering addr(n3GRiDLKWuKLCw1DZmV75W1mE35qmW2tQm)#dm832d0a
+Jul 27 01:53:13.090 INFO Registering addr(mjSrB3wS4xab3kYqFktwBzfTdPg367ZJ2d)#kdxvqwc5
+Jul 27 01:53:14.220 INFO Registering addr(mqVnk6NPRdhntvfm4hh9vvjiRkFDUuSYsH)#ypxkdrsq
+Jul 27 01:53:14.519 INFO Registering addr(mr1iPkD9N3RJZZxXRk7xF9d36gffa6exNC)#n3uhsuqz
+Jul 27 01:53:14.828 INFO Registering addr(muYdXKmX9bByAueDe6KFfHd5Ff1gdN9ErG)#0ayck9fm
+Jul 27 01:53:15.144 INFO Registering addr(mvZtbibDAAA3WLpY7zXXFqRa3T4XSknBX7)#hkf7ujwt
+Jul 27 01:53:15.443 INFO Registering addr(mg1C76bNTutiCDV3t9nWhZs3Dc8LzUufj8)#gtqjph77
+Jul 27 01:53:15.740 INFO Registering addr(mweN5WVqadScHdA81aATSdcVr4B6dNokqx)#qz3ysrq0
+Jul 27 01:53:16.111 INFO Registering addr(mzxXgV6e4BZSsz8zVHm3TmqbECt7mbuErt)#pnqz0pm8
+Jul 27 01:53:16.499 INFO Registering addr(n37mwmru2oaVosgfuvzBwgV2ysCQRrLko7)#lh2paj0q
+Jul 27 01:53:16.891 INFO Registering addr(n2v875jbJ4RjBnTjgbfikDfnwsDV5iUByw)#8606llct
+Jul 27 01:53:17.383 INFO Registering addr(mjSrB3wS4xab3kYqFktwBzfTdPg367ZJ2d)#kdxvqwc5
+Jul 27 01:53:17.877 INFO Starting postgres
+Jul 27 01:53:18.610 INFO Created container postgres: 805fc46bb72ccd739eb70c081702790150a3b23add8737cdbde81ed8b0a1d51b
+Jul 27 01:53:18.979 INFO Starting stacks-api
+Jul 27 01:53:21.337 INFO Created container stacks-api: b5b2c500caed276470c7274d55cae3ff6efc061496067c7a45b66899c2563ef5
+Jul 27 01:53:21.870 WARN Ctrl+C received, initiating termination sequence.
+Jul 27 01:53:21.870 INFO Handling Termination command
+Jul 27 01:53:22.761 INFO Created container stacks-node: cdfd56b4ccef56d69ad1e764d81d404ab9fef756436a401b320ba7619e8186e3
+Jul 27 01:53:23.971 INFO Created container stacks-explorer: 295c188ccd3a3487e84e4fdf53a9b7536f3af72bee3f897538d4d7de94e13efc
+Jul 27 01:53:24.716 INFO Terminating stacks-explorer
+Jul 27 01:53:25.098 INFO Terminating bitcoin-node
+Jul 27 01:53:25.480 INFO Terminating stacks-api
+Jul 27 01:53:25.971 INFO Terminating postgres
+Jul 27 01:53:26.366 INFO Terminating stacks-node
+Jul 27 01:53:26.516 INFO Pruning network and containers
+Jul 27 01:53:26.517 INFO Artifacts (logs, conf, chainstates) available here: /home/rozar/Documents/stacks/dungeon-master/.cache/stacks-devnet-1690422789
+Jul 27 01:53:26.517 INFO ✌️
