@@ -79,6 +79,13 @@ plan:
             anchor-block-only: true
             clarity-version: 1
         - contract-publish:
+            contract-name: dme005-token-faucet
+            expected-sender: ST1SJ3DTE5DN7X54YDH5D64R3BCB6A2AG2ZQ8YPD5
+            cost: 14480
+            path: contracts/extensions/dme005-token-faucet.clar
+            anchor-block-only: true
+            clarity-version: 1
+        - contract-publish:
             contract-name: dme100-dev-fund
             expected-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
             cost: 29300
@@ -90,6 +97,13 @@ plan:
             expected-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
             cost: 33290
             path: contracts/proposals/dmp000-bootstrap.clar
+            anchor-block-only: true
+            clarity-version: 1
+        - contract-publish:
+            contract-name: dmp001-token-faucet
+            expected-sender: ST1SJ3DTE5DN7X54YDH5D64R3BCB6A2AG2ZQ8YPD5
+            cost: 4650
+            path: contracts/proposals/dmp001-token-faucet.clar
             anchor-block-only: true
             clarity-version: 1
         - contract-publish:
@@ -127,14 +141,4 @@ plan:
             path: contracts/traits/nft-trait.clar
             anchor-block-only: true
             clarity-version: 1
-      epoch: "2.0"
-    - id: 1
-      transactions:
-        - contract-call:
-            contract-id: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.dungeon-master
-            expected-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
-            method: construct
-            parameters:
-                - ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.dmp000-bootstrap
-            cost: 5960
       epoch: "2.05"

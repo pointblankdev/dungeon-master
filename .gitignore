@@ -4,3 +4,5 @@ history.txt
 scraps.txt
 cvm/vmstate.db
 .DS_Store
+
+.cache

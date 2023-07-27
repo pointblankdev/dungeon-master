@@ -2,9 +2,21 @@
 ;; Author: Ross Ragsdale
 ;; Depends-On: 
 ;; Synopsis:
-;; 
+;; This contract provides a token faucet functionality for DME (Dungeon Master Extension) tokens. 
+;; Users can claim tokens at a specified drip rate. The contract ensures a user can only claim tokens 
+;; if sufficient balance is available, and tracks the total amount of tokens issued.
 ;; Description:
-;; 
+;; This Clarity smart contract implements a token faucet for the Charisma token. 
+;; It allows the DAO or extensions to set the amount of tokens (drip amount) to be issued per block. 
+;; The faucet tracks the last claim and the total amount of tokens issued to prevent abuse and maintain transparency.
+;; There are public functions that allow users to claim tokens, provided that tokens are available. 
+;; The amount of tokens available is determined by the product of the set drip amount and the number of blocks since the last claim. 
+;; If there are enough tokens available, the user's claim is processed, the last claim block height is updated, 
+;; and the total amount of tokens issued is incremented by the number of tokens claimed.
+;; There are read-only functions that allow users to check the current drip amount and the block height of the last claim.
+;; The contract ensures that only the DAO or authorized extensions can adjust the drip amount, 
+;; providing a level of security and control over the token issuance process. 
+;; Unauthorized attempts to change the drip amount will result in an error.
 
 (impl-trait .extension-trait.extension-trait)
 
