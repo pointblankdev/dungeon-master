@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "hirosystems.clarity-lsp"
+        "hirosystems.clarity-lsp",
+        "tamasfe.even-better-toml"
     ]
 }
