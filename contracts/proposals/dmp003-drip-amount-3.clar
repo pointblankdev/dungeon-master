@@ -7,6 +7,7 @@
 
 
 
+;; (impl-trait 'SP2D5BGGJ956A635JG7CJQ59FTRFRB0893514EZPJ.proposal-trait.proposal-trait)
 (impl-trait .proposal-trait.proposal-trait)
 
 (define-public (execute (sender principal))
