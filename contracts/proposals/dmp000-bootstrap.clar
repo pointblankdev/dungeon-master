@@ -21,6 +21,8 @@
 				{extension: .dme002-proposal-submission, enabled: true}
 				{extension: .dme003-emergency-proposals, enabled: true}
 				{extension: .dme004-emergency-execute, enabled: true}
+				;; dev debug
+				{extension: .dme006-quest-vault, enabled: true}
 			)
 		))
 

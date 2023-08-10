@@ -42,6 +42,10 @@ depends_on = ["dungeon-master", "extension-trait", "dme001-proposal-voting"]
 path = "contracts/extensions/dme005-token-faucet.clar"
 depends_on = ["dungeon-master", "extension-trait"]
 
+[contracts.dme006-quest-vault]
+path = "contracts/extensions/dme006-quest-vault.clar"
+depends_on = ["dungeon-master", "extension-trait", "dme000-governance-token"]
+
 [contracts.dme100-dev-fund]
 path = "contracts/extensions/dme100-dev-fund.clar"
 depends_on = ["dungeon-master", "extension-trait", "dme000-governance-token"]
@@ -71,13 +75,9 @@ depends_on = [
 path = "contracts/proposals/dmp001-token-faucet.clar"
 depends_on = ["dme000-governance-token", "dungeon-master"]
 
-[contracts.dmp100-dev-fund]
-path = "contracts/proposals/dmp100-dev-fund.clar"
-depends_on = ["dme000-governance-token", "dungeon-master"]
-
-[contracts.dmp101-kill-emergency-execute]
-path = "contracts/proposals/dmp101-kill-emergency-execute.clar"
-depends_on = ["dme004-emergency-execute", "dungeon-master"]
+[contracts.dmp003-drip-amount-3]
+path = "contracts/proposals/dmp003-drip-amount-3.clar"
+depends_on = ["dme005-token-faucet", "dungeon-master"]
 
 # traits
 
