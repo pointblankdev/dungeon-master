@@ -123,6 +123,12 @@ DungeonMaster reserves different uint ranges for the main components.
 - `2000-2999`: Proposal errors.
 - `3000-3999`: Extension errors.
 
+## Mainnet Contract Principals
+
+- `SP2D5BGGJ956A635JG7CJQ59FTRFRB0893514EZPJ`: Most of the core DAO and traits are deployed here
+- `SP2ZNGJ85ENDY6QRHQ5P2D4FXKGZWCKTB2T0Z55KS`: Recent contracts and proposals have been deployed here
+- `SP2VN1W66N146R8Y7RZAVGK9P9G4GG5MHQDWYB2NM`: Address for the centralized quest completion oracle
+
 # License
 
 MIT license, all good as long as the copyright and permission notice are included. Although I ask developers that adopt DungeonMaster in one way or another to make the adapter open source. (The client code that interfaces with the DAO.)

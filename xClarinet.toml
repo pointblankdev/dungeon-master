@@ -1,0 +1,106 @@
+[project]
+name = "dungeon-master-test"
+requirements = []
+costs_version = 2
+
+# static analysis
+[repl.analysis]
+passes = ["check_checker"]
+
+[contracts.dungeon-master]
+path = "contracts/dungeon-master.clar"
+depends_on = ["proposal-trait", "extension-trait"]
+
+# extentions
+
+[contracts.dme000-governance-token]
+path = "contracts/extensions/dme000-governance-token.clar"
+depends_on = ["dungeon-master", "governance-token-trait", "sip010-ft-trait"]
+
+[contracts.dme001-proposal-voting]
+path = "contracts/extensions/dme001-proposal-voting.clar"
+depends_on = [
+    "dungeon-master",
+    "proposal-trait",
+    "extension-trait",
+    "dme000-governance-token",
+]
+
+[contracts.dme002-proposal-submission]
+path = "contracts/extensions/dme002-proposal-submission.clar"
+depends_on = ["dungeon-master", "extension-trait", "dme001-proposal-voting"]
+
+[contracts.dme003-emergency-proposals]
+path = "contracts/extensions/dme003-emergency-proposals.clar"
+depends_on = ["dungeon-master", "extension-trait", "dme001-proposal-voting"]
+
+[contracts.dme004-emergency-execute]
+path = "contracts/extensions/dme004-emergency-execute.clar"
+depends_on = ["dungeon-master", "extension-trait", "dme001-proposal-voting"]
+
+[contracts.dme005-token-faucet]
+path = "contracts/extensions/dme005-token-faucet.clar"
+depends_on = ["dungeon-master", "extension-trait"]
+
+[contracts.dme006-quest-vault]
+path = "contracts/extensions/dme006-quest-vault.clar"
+depends_on = ["dungeon-master", "extension-trait", "dme000-governance-token"]
+
+[contracts.dme100-dev-fund]
+path = "contracts/extensions/dme100-dev-fund.clar"
+depends_on = ["dungeon-master", "extension-trait", "dme000-governance-token"]
+
+# external
+
+[contracts.nft-escrow]
+path = "contracts/external/nft-escrow.clar"
+depends_on = ["ownable-trait"]
+
+# proposals
+
+[contracts.dmp000-bootstrap]
+path = "contracts/proposals/dmp000-bootstrap.clar"
+depends_on = [
+    "dungeon-master",
+    "proposal-trait",
+    "extension-trait",
+    "dme000-governance-token",
+    "dme001-proposal-voting",
+    "dme002-proposal-submission",
+    "dme003-emergency-proposals",
+    "dme004-emergency-execute",
+]
+
+[contracts.dmp001-token-faucet]
+path = "contracts/proposals/dmp001-token-faucet.clar"
+depends_on = ["dme000-governance-token", "dungeon-master"]
+
+[contracts.dmp003-drip-amount-3]
+path = "contracts/proposals/dmp003-drip-amount-3.clar"
+depends_on = ["dme005-token-faucet", "dungeon-master"]
+
+# traits
+
+[contracts.extension-trait]
+path = "contracts/traits/extension-trait.clar"
+depends_on = []
+
+[contracts.governance-token-trait]
+path = "contracts/traits/governance-token-trait.clar"
+depends_on = []
+
+[contracts.ownable-trait]
+path = "contracts/traits/ownable-trait.clar"
+depends_on = []
+
+[contracts.proposal-trait]
+path = "contracts/traits/proposal-trait.clar"
+depends_on = []
+
+[contracts.sip010-ft-trait]
+path = "contracts/traits/sip010-ft-trait.clar"
+depends_on = []
+
+[contracts.nft-trait]
+path = "contracts/traits/nft-trait.clar"
+depends_on = []

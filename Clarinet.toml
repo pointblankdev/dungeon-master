@@ -13,48 +13,13 @@ depends_on = ["proposal-trait", "extension-trait"]
 
 # extentions
 
-[contracts.dme000-governance-token]
-path = "contracts/extensions/dme000-governance-token.clar"
-depends_on = ["dungeon-master", "governance-token-trait", "sip010-ft-trait"]
+[contracts.dme006-quest-completion]
+path = "contracts/extensions/dme006-quest-completion.clar"
+depends_on = []
 
-[contracts.dme001-proposal-voting]
-path = "contracts/extensions/dme001-proposal-voting.clar"
-depends_on = [
-    "dungeon-master",
-    "proposal-trait",
-    "extension-trait",
-    "dme000-governance-token",
-]
-
-[contracts.dme002-proposal-submission]
-path = "contracts/extensions/dme002-proposal-submission.clar"
-depends_on = ["dungeon-master", "extension-trait", "dme001-proposal-voting"]
-
-[contracts.dme003-emergency-proposals]
-path = "contracts/extensions/dme003-emergency-proposals.clar"
-depends_on = ["dungeon-master", "extension-trait", "dme001-proposal-voting"]
-
-[contracts.dme004-emergency-execute]
-path = "contracts/extensions/dme004-emergency-execute.clar"
-depends_on = ["dungeon-master", "extension-trait", "dme001-proposal-voting"]
-
-[contracts.dme005-token-faucet]
-path = "contracts/extensions/dme005-token-faucet.clar"
-depends_on = ["dungeon-master", "extension-trait"]
-
-[contracts.dme006-quest-vault]
-path = "contracts/extensions/dme006-quest-vault.clar"
-depends_on = ["dungeon-master", "extension-trait", "dme000-governance-token"]
-
-[contracts.dme100-dev-fund]
-path = "contracts/extensions/dme100-dev-fund.clar"
-depends_on = ["dungeon-master", "extension-trait", "dme000-governance-token"]
-
-# external
-
-[contracts.nft-escrow]
-path = "contracts/external/nft-escrow.clar"
-depends_on = ["ownable-trait"]
+[contracts.dme007-quest-completion-oracle]
+path = "contracts/extensions/dme007-quest-completion-oracle.clar"
+depends_on = ['dungeon-master', 'dme006-quest-completion']
 
 # proposals
 
@@ -69,15 +34,10 @@ depends_on = [
     "dme002-proposal-submission",
     "dme003-emergency-proposals",
     "dme004-emergency-execute",
+    "dme006-quest-completion",
+    "dme007-quest-completion-oracle",
 ]
 
-[contracts.dmp001-token-faucet]
-path = "contracts/proposals/dmp001-token-faucet.clar"
-depends_on = ["dme000-governance-token", "dungeon-master"]
-
-[contracts.dmp003-drip-amount-3]
-path = "contracts/proposals/dmp003-drip-amount-3.clar"
-depends_on = ["dme005-token-faucet", "dungeon-master"]
 
 # traits
 
