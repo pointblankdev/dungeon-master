@@ -16,7 +16,7 @@
 		;; Enable genesis extensions.
 		(try! (contract-call? .dungeon-master set-extensions
 			(list
-				;; {extension: .dme000-governance-token, enabled: true}
+				{extension: .dme000-governance-token, enabled: true}
 				;; {extension: .dme001-proposal-voting, enabled: true}
 				;; {extension: .dme002-proposal-submission, enabled: true}
 				;; {extension: .dme003-emergency-proposals, enabled: true}
@@ -24,8 +24,16 @@
 				;; dev debug
 				{extension: .dme006-quest-completion, enabled: true}
 				{extension: .dme007-quest-completion-oracle, enabled: true}
+				{extension: .dme008-quest-metadata, enabled: true}
+				{extension: .dme009-charisma-rewards, enabled: true}
+				{extension: .dme010-quest-reward-helper, enabled: true}
 			)
 		))
+
+		(try! (contract-call? .dme008-quest-metadata set-metadata u0 (as-max-len? u"hello" u256)))
+		(try! (contract-call? .dme009-charisma-rewards set-rewards u0 u100))
+		;; (try! (contract-call? .dme009-charisma-rewards set-locked sender u0 false))
+		(try! (contract-call? .dme006-quest-completion set-complete sender u0 true))
 
 		;; ;; Set emergency team members.
 		;; (try! (contract-call? .dme003-emergency-proposals set-emergency-team-member 'SP2D5BGGJ956A635JG7CJQ59FTRFRB0893514EZPJ true))

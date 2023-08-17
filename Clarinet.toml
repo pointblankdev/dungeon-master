@@ -13,6 +13,10 @@ depends_on = ["proposal-trait", "extension-trait"]
 
 # extentions
 
+[contracts.dme000-governance-token]
+path = "contracts/extensions/dme000-governance-token.clar"
+depends_on = []
+
 [contracts.dme006-quest-completion]
 path = "contracts/extensions/dme006-quest-completion.clar"
 depends_on = []
@@ -20,6 +24,23 @@ depends_on = []
 [contracts.dme007-quest-completion-oracle]
 path = "contracts/extensions/dme007-quest-completion-oracle.clar"
 depends_on = ['dungeon-master', 'dme006-quest-completion']
+
+[contracts.dme008-quest-metadata]
+path = "contracts/extensions/dme008-quest-metadata.clar"
+depends_on = ['dungeon-master', 'dme006-quest-completion']
+
+[contracts.dme009-charisma-rewards]
+path = "contracts/extensions/dme009-charisma-rewards.clar"
+depends_on = [
+    'dungeon-master',
+    'dme006-quest-completion',
+    'dme008-quest-metadata',
+]
+
+[contracts.dme010-quest-reward-helper]
+path = "contracts/extensions/dme010-quest-reward-helper.clar"
+depends_on = ['dungeon-master']
+
 
 # proposals
 
@@ -36,6 +57,9 @@ depends_on = [
     "dme004-emergency-execute",
     "dme006-quest-completion",
     "dme007-quest-completion-oracle",
+    "dme008-quest-metadata",
+    "dme009-charisma-rewards",
+    "dme010-quest-helper",
 ]
 
 
