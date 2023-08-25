@@ -30,10 +30,11 @@
 			)
 		))
 
-		(try! (contract-call? .dme008-quest-metadata set-metadata u0 (as-max-len? u"hello" u256)))
-		(try! (contract-call? .dme009-charisma-rewards set-rewards u0 u100))
+		;; (try! (contract-call? .dme008-quest-metadata set-metadata u0 (as-max-len? u"hello" u256)))
+		;; (try! (contract-call? .dme009-charisma-rewards set-rewards u0 u100))
 		;; (try! (contract-call? .dme009-charisma-rewards set-locked sender u0 false))
-		(try! (contract-call? .dme006-quest-completion set-complete sender u0 true))
+		;; (try! (contract-call? .dme006-quest-completion set-complete sender u0 true))
+		;; (unwrap-panic (contract-call? .dmp009-airdrop-rewards-1-3 execute sender))
 
 		;; ;; Set emergency team members.
 		;; (try! (contract-call? .dme003-emergency-proposals set-emergency-team-member 'SP2D5BGGJ956A635JG7CJQ59FTRFRB0893514EZPJ true))
