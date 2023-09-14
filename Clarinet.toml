@@ -17,6 +17,14 @@ depends_on = ["proposal-trait", "extension-trait"]
 path = "contracts/extensions/dme000-governance-token.clar"
 depends_on = []
 
+[contracts.dme001-proposal-voting]
+path = "contracts/extensions/dme001-proposal-voting.clar"
+depends_on = ['dungeon-master', "dme000-governance-token"]
+
+[contracts.dme002-proposal-submission]
+path = "contracts/extensions/dme002-proposal-submission.clar"
+depends_on = ['dungeon-master', 'dme001-proposal-voting']
+
 [contracts.dme006-quest-completion]
 path = "contracts/extensions/dme006-quest-completion.clar"
 depends_on = []
@@ -60,11 +68,16 @@ depends_on = [
     "dme008-quest-metadata",
     "dme009-charisma-rewards",
     "dme010-quest-helper",
+    "dmp010-proposal-parameters",
 ]
 
-[contracts.dmp009-airdrop-rewards-1-3]
-path = "contracts/proposals/dmp009-airdrop-rewards-1-3.clar"
-depends_on = ["dme000-governance-token", 'balance-at-block']
+# [contracts.dmp009-airdrop-rewards-1-3]
+# path = "contracts/proposals/dmp009-airdrop-rewards-1-3.clar"
+# depends_on = ["dme000-governance-token", 'balance-at-block']
+
+[contracts.dmp010-proposal-parameters]
+path = "contracts/proposals/dmp010-proposal-parameters.clar"
+depends_on = ["dme000-governance-token", "dme002-proposal-submission"]
 
 # external
 
