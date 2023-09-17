@@ -27,6 +27,7 @@
 				{extension: .dme008-quest-metadata, enabled: true}
 				{extension: .dme009-charisma-rewards, enabled: true}
 				{extension: .dme010-quest-reward-helper, enabled: true}
+				{extension: .dme014-stx-rewards, enabled: true}
 			)		
 			
 		))
@@ -35,7 +36,7 @@
 		;; (try! (contract-call? .dme009-charisma-rewards set-rewards u0 u100))
 		;; (try! (contract-call? .dme009-charisma-rewards set-locked sender u0 false))
 		;; (try! (contract-call? .dme006-quest-completion set-complete sender u0 true))
-		(unwrap-panic (contract-call? .dmp010-proposal-parameters execute sender))
+		;; (unwrap-panic (contract-call? .dmp010-proposal-parameters execute sender))
 
 
 

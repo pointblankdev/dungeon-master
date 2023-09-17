@@ -49,6 +49,22 @@ depends_on = [
 path = "contracts/extensions/dme010-quest-reward-helper.clar"
 depends_on = ['dungeon-master']
 
+[contracts.dme011-quest-expiration]
+path = "contracts/extensions/dme011-quest-expiration.clar"
+depends_on = ['dungeon-master']
+
+[contracts.dme012-quest-activation]
+path = "contracts/extensions/dme012-quest-activation.clar"
+depends_on = ['dungeon-master']
+
+[contracts.dme013-quest-max-completions]
+path = "contracts/extensions/dme013-quest-max-completions.clar"
+depends_on = ['dungeon-master']
+
+[contracts.dme014-stx-rewards]
+path = "contracts/extensions/dme014-stx-rewards.clar"
+depends_on = ['dungeon-master']
+
 
 # proposals
 
@@ -69,6 +85,7 @@ depends_on = [
     "dme009-charisma-rewards",
     "dme010-quest-helper",
     "dmp010-proposal-parameters",
+    "dme014-stx-rewards",
 ]
 
 # [contracts.dmp009-airdrop-rewards-1-3]
