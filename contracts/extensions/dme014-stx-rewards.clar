@@ -16,7 +16,8 @@
 (define-map quest-rewards-map uint uint)
 
 (define-data-var fee-percentage uint u5)
-(define-data-var fee-address principal 'SP2MR4YP9C7P93EJZC4W1JT8HKAX8Q4HR9Q6X3S88)
+;; (define-data-var fee-address principal 'SP2MR4YP9C7P93EJZC4W1JT8HKAX8Q4HR9Q6X3S88)
+(define-data-var fee-address principal 'ST1SJ3DTE5DN7X54YDH5D64R3BCB6A2AG2ZQ8YPD5)
 
 ;; --- Authorization check
 

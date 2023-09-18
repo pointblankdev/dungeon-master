@@ -28,16 +28,19 @@
 				{extension: .dme009-charisma-rewards, enabled: true}
 				{extension: .dme010-quest-reward-helper, enabled: true}
 				{extension: .dme014-stx-rewards, enabled: true}
+				{extension: .dme015-quest-reward-helper, enabled: true}
 			)		
 			
 		))
 
 		;; (try! (contract-call? .dme008-quest-metadata set-metadata u0 (as-max-len? u"hello" u256)))
-		;; (try! (contract-call? .dme009-charisma-rewards set-rewards u0 u100))
+		(try! (contract-call? .dme009-charisma-rewards set-rewards u0 u100))
+		(try! (contract-call? .dme014-stx-rewards set-rewards u0 u100))
 		;; (try! (contract-call? .dme009-charisma-rewards set-locked sender u0 false))
-		;; (try! (contract-call? .dme006-quest-completion set-complete sender u0 true))
-		;; (unwrap-panic (contract-call? .dmp010-proposal-parameters execute sender))
 
+		(try! (contract-call? .dme006-quest-completion set-complete sender u0 true))
+		;; (try! (contract-call? .dme015-quest-reward-helper is-completed-and-unlocked u0))
+		;; (try! (contract-call? .dme015-quest-reward-helper claim-quest-reward u0))
 
 
 		;; ;; Set emergency team members.

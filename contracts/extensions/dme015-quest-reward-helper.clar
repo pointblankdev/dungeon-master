@@ -1,21 +1,23 @@
 ;; Title: DME015 Quest Reward Helper
 ;; Author: rozar.btc
-;; Depends-On: rewards-trait
 ;; Synopsis:
 ;; A utility contract to streamline and simplify the quest reward claiming process for users.
 ;; Description:
 ;; The Quest Reward Helper is an intuitive bridge that aids users in seamlessly claiming their rewards upon quest completion. 
+;; This latest iteration adds support for quest activation and deactivation, as well as STX quest reward payouts.
 
+;; (impl-trait 'SP2D5BGGJ956A635JG7CJQ59FTRFRB0893514EZPJ.extension-trait.extension-trait)
 (impl-trait .extension-trait.extension-trait)
 
+(define-constant err-not-found (err u2001))
 (define-constant err-not-completed (err u3101))
 (define-constant err-rewards-locked (err u3102))
 (define-constant err-expired (err u3103))
 (define-constant err-unactivated (err u3104))
 
-;; --- Authorization check
+;; --- Authorization checks
 
-(define-public (is-completed-and-unlocked (quest-id uint))
+(define-read-only (is-completed-and-unlocked (quest-id uint))
 	(begin
 		(asserts! (try! (contract-call? .dme006-quest-completion is-complete tx-sender quest-id)) err-not-completed)
 		(asserts! (not (unwrap! (contract-call? .dme009-charisma-rewards is-locked tx-sender quest-id) err-not-found)) err-rewards-locked)
@@ -23,10 +25,10 @@
 	)
 )
 
-(define-public (is-activated-and-unexpired (quest-id uint))
+(define-read-only (is-activated-and-unexpired (quest-id uint))
 	(begin
-		(asserts! (>= (contract-call? .dme011-quest-expiration get-expiration quest-id) block-height) err-expired)
-		(asserts! (<= (contract-call? .dme012-quest-activation get-activation quest-id) block-height) err-unactivated)
+		(asserts! (>= (unwrap! (contract-call? .dme011-quest-expiration get-expiration quest-id) err-not-found) block-height) err-expired)
+		(asserts! (<= (unwrap! (contract-call? .dme012-quest-activation get-activation quest-id) err-not-found) block-height) err-unactivated)
 		(ok true)
 	)
 )
@@ -42,19 +44,19 @@
         ;; Extract and lock the quest rewards
         (let
             (
-                (charisma-rewards (try! (contract-call? .dme009-charisma-rewards get-rewards quest-id)))
-                (stx-rewards (try! (contract-call? .dme014-stx-rewards get-rewards quest-id)))
+                (charisma-rewards (unwrap! (contract-call? .dme009-charisma-rewards get-rewards quest-id) err-not-found))
+                (stx-rewards (unwrap! (contract-call? .dme014-stx-rewards get-rewards quest-id) err-not-found))
             )
             ;; Claim charisma rewards if they exist
             (if (> charisma-rewards u0)
                 (try! (contract-call? .dme009-charisma-rewards claim quest-id))
-                (ok true)
+                false
             )
             
             ;; Claim STX rewards if they exist
             (if (> stx-rewards u0)
                 (try! (contract-call? .dme014-stx-rewards claim quest-id))
-                (ok true)
+                false
             )
             
             ;; Lock the quest rewards

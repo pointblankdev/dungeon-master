@@ -65,6 +65,10 @@ depends_on = ['dungeon-master']
 path = "contracts/extensions/dme014-stx-rewards.clar"
 depends_on = ['dungeon-master']
 
+[contracts.dme015-quest-reward-helper]
+path = "contracts/extensions/dme015-quest-reward-helper.clar"
+depends_on = ['dungeon-master']
+
 
 # proposals
 
@@ -86,6 +90,7 @@ depends_on = [
     "dme010-quest-helper",
     "dmp010-proposal-parameters",
     "dme014-stx-rewards",
+    "dme015-quest-reward-helper",
 ]
 
 # [contracts.dmp009-airdrop-rewards-1-3]
