@@ -69,6 +69,13 @@ depends_on = ['dungeon-master']
 path = "contracts/extensions/dme015-quest-reward-helper.clar"
 depends_on = ['dungeon-master']
 
+[contracts.dme016-quest-ownership]
+path = "contracts/extensions/dme016-quest-ownership.clar"
+depends_on = ['dungeon-master']
+
+[contracts.dme017-quest-helper]
+path = "contracts/extensions/dme017-quest-helper.clar"
+depends_on = ['dungeon-master']
 
 # proposals
 
@@ -91,6 +98,8 @@ depends_on = [
     "dmp010-proposal-parameters",
     "dme014-stx-rewards",
     "dme015-quest-reward-helper",
+    "dme016-quest-ownership",
+    "dme017-quest-helper",
 ]
 
 # [contracts.dmp009-airdrop-rewards-1-3]

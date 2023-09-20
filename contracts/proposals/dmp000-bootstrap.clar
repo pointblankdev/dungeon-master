@@ -29,6 +29,8 @@
 				{extension: .dme010-quest-reward-helper, enabled: true}
 				{extension: .dme014-stx-rewards, enabled: true}
 				{extension: .dme015-quest-reward-helper, enabled: true}
+				{extension: .dme016-quest-ownership, enabled: true}
+				{extension: .dme017-quest-helper, enabled: true}
 			)		
 			
 		))
