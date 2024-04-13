@@ -1,1 +1,0 @@
-;; quest-trait NFT airdropped to invite users to accept inital quests

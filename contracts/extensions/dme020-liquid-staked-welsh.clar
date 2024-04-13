@@ -22,7 +22,7 @@
 
 (define-data-var token-name (string-ascii 32) "Liquid Staked Welshcorgicoin")
 (define-data-var token-symbol (string-ascii 10) "lsWELSH")
-(define-data-var token-uri (optional (string-utf8 256)) u"https://charisma.rocks/liquid-staked-welshcorgicoin.json")
+(define-data-var token-uri (optional (string-utf8 256)) (some u"https://charisma.rocks/liquid-staked-welshcorgicoin.json"))
 (define-data-var token-decimals uint u6)
 
 ;; --- Authorization check

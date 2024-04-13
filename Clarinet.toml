@@ -12,113 +12,15 @@ path = "contracts/dungeon-master.clar"
 depends_on = ["proposal-trait", "extension-trait"]
 
 # extentions
-
 [contracts.dme000-governance-token]
 path = "contracts/extensions/dme000-governance-token.clar"
 depends_on = []
 
-[contracts.dme001-proposal-voting]
-path = "contracts/extensions/dme001-proposal-voting.clar"
-depends_on = ['dungeon-master', "dme000-governance-token"]
-
-[contracts.dme002-proposal-submission]
-path = "contracts/extensions/dme002-proposal-submission.clar"
-depends_on = ['dungeon-master', 'dme001-proposal-voting']
-
-[contracts.dme006-quest-completion]
-path = "contracts/extensions/dme006-quest-completion.clar"
-depends_on = []
-
-[contracts.dme007-quest-completion-oracle]
-path = "contracts/extensions/dme007-quest-completion-oracle.clar"
-depends_on = ['dungeon-master', 'dme006-quest-completion']
-
-[contracts.dme008-quest-metadata]
-path = "contracts/extensions/dme008-quest-metadata.clar"
-depends_on = ['dungeon-master', 'dme006-quest-completion']
-
-[contracts.dme009-charisma-rewards]
-path = "contracts/extensions/dme009-charisma-rewards.clar"
-depends_on = [
-    'dungeon-master',
-    'dme006-quest-completion',
-    'dme008-quest-metadata',
-]
-
-[contracts.dme010-quest-reward-helper]
-path = "contracts/extensions/dme010-quest-reward-helper.clar"
-depends_on = ['dungeon-master']
-
-[contracts.dme011-quest-expiration]
-path = "contracts/extensions/dme011-quest-expiration.clar"
-depends_on = ['dungeon-master']
-
-[contracts.dme012-quest-activation]
-path = "contracts/extensions/dme012-quest-activation.clar"
-depends_on = ['dungeon-master']
-
-[contracts.dme013-quest-max-completions]
-path = "contracts/extensions/dme013-quest-max-completions.clar"
-depends_on = ['dungeon-master']
-
-[contracts.dme014-stx-rewards]
-path = "contracts/extensions/dme014-stx-rewards.clar"
-depends_on = ['dungeon-master']
-
-[contracts.dme015-quest-reward-helper]
-path = "contracts/extensions/dme015-quest-reward-helper.clar"
-depends_on = ['dungeon-master']
-
-[contracts.dme016-quest-ownership]
-path = "contracts/extensions/dme016-quest-ownership.clar"
-depends_on = ['dungeon-master']
-
-[contracts.dme017-quest-helper]
-path = "contracts/extensions/dme017-quest-helper.clar"
-depends_on = ['dungeon-master']
-
-# proposals
-
-[contracts.dmp000-bootstrap]
-path = "contracts/proposals/dmp000-bootstrap.clar"
-depends_on = [
-    "dungeon-master",
-    "proposal-trait",
-    "extension-trait",
-    "dme000-governance-token",
-    "dme001-proposal-voting",
-    "dme002-proposal-submission",
-    "dme003-emergency-proposals",
-    "dme004-emergency-execute",
-    "dme006-quest-completion",
-    "dme007-quest-completion-oracle",
-    "dme008-quest-metadata",
-    "dme009-charisma-rewards",
-    "dme010-quest-helper",
-    "dmp010-proposal-parameters",
-    "dme014-stx-rewards",
-    "dme015-quest-reward-helper",
-    "dme016-quest-ownership",
-    "dme017-quest-helper",
-]
-
-# [contracts.dmp009-airdrop-rewards-1-3]
-# path = "contracts/proposals/dmp009-airdrop-rewards-1-3.clar"
-# depends_on = ["dme000-governance-token", 'balance-at-block']
-
-[contracts.dmp010-proposal-parameters]
-path = "contracts/proposals/dmp010-proposal-parameters.clar"
-depends_on = ["dme000-governance-token", "dme002-proposal-submission"]
-
-# external
-
-[contracts.balance-at-block]
-path = "contracts/external/balance-at-block.clar"
-depends_on = ["sip010-ft-trait"]
-
+[contracts.dme018-liquid-staked-welsh]
+path = "contracts/extensions/dme020-liquid-staked-welsh.clar"
+depends_on = ['dungeon-master', 'ft-trait']
 
 # traits
-
 [contracts.extension-trait]
 path = "contracts/traits/extension-trait.clar"
 depends_on = []
@@ -141,4 +43,8 @@ depends_on = []
 
 [contracts.nft-trait]
 path = "contracts/traits/nft-trait.clar"
+depends_on = []
+
+[contracts.ft-trait]
+path = "contracts/traits/ft-trait.clar"
 depends_on = []
