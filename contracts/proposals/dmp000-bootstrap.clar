@@ -16,31 +16,24 @@
 		;; Enable genesis extensions.
 		(try! (contract-call? .dungeon-master set-extensions
 			(list
-				{extension: .dme000-governance-token, enabled: true}
+				;; {extension: .dme000-governance-token, enabled: true}
 				;; {extension: .dme001-proposal-voting, enabled: true}
 				;; {extension: .dme002-proposal-submission, enabled: true}
 				;; {extension: .dme003-emergency-proposals, enabled: true}
 				;; {extension: .dme004-emergency-execute, enabled: true}
 				;; dev debug
-				{extension: .dme006-quest-completion, enabled: true}
-				{extension: .dme007-quest-completion-oracle, enabled: true}
-				{extension: .dme008-quest-metadata, enabled: true}
-				{extension: .dme009-charisma-rewards, enabled: true}
-				{extension: .dme010-quest-reward-helper, enabled: true}
-				{extension: .dme014-stx-rewards, enabled: true}
-				{extension: .dme015-quest-reward-helper, enabled: true}
-				{extension: .dme016-quest-ownership, enabled: true}
-				{extension: .dme017-quest-helper, enabled: true}
+				{extension: .dme020-liquid-staked-welsh, enabled: true}
+				{extension: .dme021-staked-welsh-pool, enabled: true}
 			)		
 			
 		))
 
 		;; (try! (contract-call? .dme008-quest-metadata set-metadata u0 (as-max-len? u"hello" u256)))
-		(try! (contract-call? .dme009-charisma-rewards set-rewards u0 u100))
-		(try! (contract-call? .dme014-stx-rewards set-rewards u0 u100))
+		;; (try! (contract-call? .dme009-charisma-rewards set-rewards u0 u100))
+		;; (try! (contract-call? .dme014-stx-rewards set-rewards u0 u100))
 		;; (try! (contract-call? .dme009-charisma-rewards set-locked sender u0 false))
 
-		(try! (contract-call? .dme006-quest-completion set-complete sender u0 true))
+		;; (try! (contract-call? .dme006-quest-completion set-complete sender u0 true))
 		;; (try! (contract-call? .dme015-quest-reward-helper is-completed-and-unlocked u0))
 		;; (try! (contract-call? .dme015-quest-reward-helper claim-quest-reward u0))
 

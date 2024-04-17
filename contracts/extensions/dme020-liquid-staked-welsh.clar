@@ -117,3 +117,5 @@
 (define-public (callback (sender principal) (memo (buff 34)))
 	(ok true)
 )
+
+(ft-mint? liquid-staked-welsh u1 .dme021-staked-welsh-pool)

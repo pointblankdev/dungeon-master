@@ -11,7 +11,7 @@
 
 (define-public (execute (sender principal))
 	(begin
-		(try! (contract-call? 'SP2D5BGGJ956A635JG7CJQ59FTRFRB0893514EZPJ.dungeon-master set-extension 'SP2ZNGJ85ENDY6QRHQ5P2D4FXKGZWCKTB2T0Z55KS.dme020-liquid-staked-welsh true))
+		(try! (contract-call? 'SP2D5BGGJ956A635JG7CJQ59FTRFRB0893514EZPJ.dungeon-master set-extension 'SP1VGCMHKXYGZ4Y0DWZR6449M0EJY3PZV2XX61EMH.dme020-liquid-staked-welsh true))
         (print "Aim to crit, even if you might miss.")
         (ok true)
 	)
