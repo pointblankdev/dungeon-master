@@ -4,12 +4,9 @@
 ;; This contract implements a staked Welsh pool where users can stake and unstake their Welsh tokens. 
 ;; The pool maintains an exchange rate between Liquid Staked Welsh (LSW) and Welsh tokens, allowing users to convert between the two.
 ;; Description:
-;; The contract defines several public functions:
-;; - `stake`: Allows users to stake a specified amount of Welsh tokens into the pool. The amount is converted to LSW based on the current exchange rate.
-;; - `unstake`: Allows users to unstake a specified amount of LSW from the pool. The amount is converted to Welsh tokens based on the current exchange rate.
-;; - `get-exchange-rate`: Returns the current exchange rate between LSW and Welsh tokens.
-;; - `get-inverse-rate`: Returns the current inverse exchange rate between LSW and Welsh tokens.
-;; - `get-total-supply-in-pool`: Returns the total supply of Welsh tokens in the pool.
+;; The exchange rates between LSW and Welsh tokens are dynamic and change based on the total supply of Welsh tokens in the pool. 
+;; If Welsh tokens are added to the pool by means other than staking, the exchange rates will change. 
+;; This makes it harder to acquire LSW and more valuable, as it can be redeemed for more Welsh tokens when unstaked.
 
 (impl-trait .extension-trait.extension-trait)
 
