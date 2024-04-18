@@ -1,47 +1,48 @@
 ;; Title: DME021 Staked Welsh Pool
 ;; Author: rozar.btc
 ;; Synopsis:
-;; This contract implements a staked Welsh pool where users can stake and unstake their Welsh tokens. 
-;; The pool maintains an exchange rate between Liquid Staked Welsh (LSW) and Welsh tokens, allowing users to convert between the two.
+;; This contract provides foundational data and functionalities for managing the Welsh token ecosystem, 
+;; specifically focusing on computing exchange rates and tracking token supplies.
 ;; Description:
-;; The exchange rates between LSW and Welsh tokens are dynamic and change based on the total supply of Welsh tokens in the pool. 
-;; If Welsh tokens are added to the pool by means other than staking, the exchange rates will change. 
-;; This makes it harder to acquire LSW and more valuable, as it can be redeemed for more Welsh tokens when unstaked.
+;; This contract serves as a foundational component for managing the Welsh token ecosystem, 
+;; offering read-only functionalities to fetch the total supply of Liquid Staked Welsh (LSW), 
+;; total Welsh tokens in the pool, and dynamic exchange rates. 
+;; These functions support external interactions and serve other contracts that require 
+;; these data points to operate, such as staking and unstaking functionalities.
 
 (impl-trait .extension-trait.extension-trait)
 
+(define-constant err-unauthorized (err u3000))
+
 (define-constant ONE_6 (pow u10 u6)) ;; 6 decimal places
 
+;; --- Authorization check
+
+(define-public (is-dao-or-extension)
+	(ok (asserts! (or (is-eq tx-sender .dungeon-master) (contract-call? .dungeon-master is-extension contract-caller)) err-unauthorized))
+)
 ;; --- Public functions
 
-(define-public (stake (amount uint))
+(define-public (deposit (amount uint))
 	(begin
-		(let
-			(
-				(inverse-rate (calculate-inverse-rate))
-				(amount-lsw (/ (* amount inverse-rate) ONE_6))
-				(sender tx-sender)
-			)
-			(try! (contract-call? .welshcorgicoin-token transfer amount sender (as-contract tx-sender) none))
-			(try! (contract-call? .dme020-liquid-staked-welsh mint amount-lsw sender))
-		)
+		(try! (is-dao-or-extension))
 		(ok true)
 	)
 )
 
-(define-public (unstake (amount uint))
+(define-public (withdraw (amount uint))
 	(begin
-		(let
-			(
-				(exchange-rate (calculate-exchange-rate))
-				(amount-welsh (/ (* amount exchange-rate) ONE_6))
-				(sender tx-sender)
-			)
-			(try! (contract-call? .dme020-liquid-staked-welsh burn amount sender))
-			(try! (as-contract (contract-call? .welshcorgicoin-token transfer amount-welsh tx-sender sender none)))
-		)
+		(try! (is-dao-or-extension))
 		(ok true)
 	)
+)
+
+(define-read-only (get-total-supply-of-lsw)
+	(ok (total-supply-of-lsw))
+)
+
+(define-read-only (get-total-welsh-in-pool)
+	(ok (total-welsh-in-pool))
 )
 
 (define-read-only (get-exchange-rate)
@@ -52,26 +53,22 @@
 	(ok (calculate-inverse-rate))
 )
 
-(define-read-only (get-total-supply-in-pool)
-	(ok (get-total-welsh-in-pool))
-)
-
 ;; --- Private functions
 
-(define-private (get-total-supply-of-lsw)
+(define-private (total-supply-of-lsw)
 	(unwrap! (contract-call? .dme020-liquid-staked-welsh get-total-supply) u1)
 )
 
-(define-private (get-total-welsh-in-pool)
+(define-private (total-welsh-in-pool)
 	(unwrap! (contract-call? .welshcorgicoin-token get-balance (as-contract tx-sender)) u1)
 )
 
 (define-private (calculate-exchange-rate)
-	(/ (* (get-total-welsh-in-pool) ONE_6) (get-total-supply-of-lsw))
+	(/ (* (total-welsh-in-pool) ONE_6) (total-supply-of-lsw))
 )
 
 (define-private (calculate-inverse-rate)
-	(/ (* (get-total-supply-of-lsw) ONE_6) (get-total-welsh-in-pool))
+	(/ (* (total-supply-of-lsw) ONE_6) (total-welsh-in-pool))
 )
 
 ;; --- Extension callback

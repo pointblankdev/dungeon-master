@@ -24,6 +24,7 @@
 				;; dev debug
 				{extension: .dme020-liquid-staked-welsh, enabled: true}
 				{extension: .dme021-staked-welsh-pool, enabled: true}
+				{extension: .dme022-staked-welsh-helper, enabled: true}
 			)		
 			
 		))

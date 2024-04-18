@@ -24,6 +24,15 @@ depends_on = ['dungeon-master', 'ft-trait', 'dme021-staked-welsh-pool']
 path = "contracts/extensions/dme021-staked-welsh-pool.clar"
 depends_on = ['dungeon-master', 'ft-trait', 'dme020-liquid-staked-welsh']
 
+[contracts.dme022-staked-welsh-helper]
+path = "contracts/extensions/dme022-staked-welsh-helper.clar"
+depends_on = [
+    'dungeon-master',
+    'ft-trait',
+    'dme020-liquid-staked-welsh',
+    'dme021-staked-welsh-pool',
+]
+
 # proposals
 
 [contracts.dmp000-bootstrap]
@@ -34,13 +43,21 @@ depends_on = [
     "extension-trait",
     "dme020-liquid-staked-welsh",
     "dme021-staked-welsh-pool",
+    "dme022-staked-welsh-helper",
 ]
 
 # external
-
 [contracts.welshcorgicoin-token]
 path = "contracts/external/welshcorgicoin-token.clar"
 depends_on = ["sip010-ft-trait", 'dme021-staked-welsh-pool']
+
+# [contracts.leo-token]
+# path = "contracts/external/leo-token.clar"
+# depends_on = ["sip010-ft-trait"]
+
+# [contracts.catdog-token]
+# path = "contracts/external/catdog-token.clar"
+# depends_on = ["sip010-ft-trait", 'welshcorgicoin-token', 'leo-token']
 
 # traits
 [contracts.extension-trait]
