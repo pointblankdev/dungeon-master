@@ -1,8 +1,8 @@
-;; Title: DME002 Proposal Submission
-;; Author: Ross Ragsdale
-;; Depends-On: DME000, DME001
+;; Title: DDE002 Proposal Submission
+;; Author: rozar.btc
+;; Depends-On: DDE000, DDE001
 ;; Synopsis:
-;; This extension part of the core of DungeonMaster. It allows governance token
+;; This extension part of the core of DeGrantsDAO. It allows governance token
 ;; holders to submit proposals when they hold at least n% percentage of the token supply.
 ;; Description:
 ;; Proposals may be submitted by anyone that holds at least n% of governance
@@ -31,7 +31,7 @@
 ;; --- Authorization check
 
 (define-public (is-dao-or-extension)
-	(ok (asserts! (or (is-eq tx-sender .dungeon-master) (contract-call? .dungeon-master is-extension contract-caller)) err-unauthorized))
+	(ok (asserts! (or (is-eq tx-sender .degrants-dao) (contract-call? .degrants-dao is-extension contract-caller)) err-unauthorized))
 )
 
 ;; --- Internal DAO functions
@@ -75,8 +75,8 @@
 	(begin
 		(asserts! (>= start-block-height (+ block-height (try! (get-parameter "minimum-proposal-start-delay")))) err-proposal-minimum-start-delay)
 		(asserts! (<= start-block-height (+ block-height (try! (get-parameter "maximum-proposal-start-delay")))) err-proposal-maximum-start-delay)
-		(asserts! (unwrap-panic (contract-call? .dme000-governance-token dmg-has-percentage-balance tx-sender (try! (get-parameter "propose-factor")))) err-insufficient-balance)
-		(contract-call? .dme001-proposal-voting add-proposal
+		(asserts! (unwrap-panic (contract-call? .dde000-governance-token dmg-has-percentage-balance tx-sender (try! (get-parameter "propose-factor")))) err-insufficient-balance)
+		(contract-call? .dde001-proposal-voting add-proposal
 			proposal
 			{
 				start-block-height: start-block-height,

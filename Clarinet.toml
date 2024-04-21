@@ -1,5 +1,9 @@
 [project]
+<<<<<<< Updated upstream
 name = "liquid-staked-welsh-test"
+=======
+name = "degrants-dao-test"
+>>>>>>> Stashed changes
 requirements = []
 costs_version = 2
 
@@ -7,15 +11,56 @@ costs_version = 2
 [repl.analysis]
 passes = ["check_checker"]
 
+<<<<<<< Updated upstream
 [contracts.liquid-staked-welsh]
 path = "contracts/external/liquid-staked-welsh.clar"
 depends_on = ["sip010-ft-trait"]
+=======
+[contracts.degrants-dao]
+path = "contracts/degrants-dao.clar"
+depends_on = ["proposal-trait", "extension-trait"]
+
+# extentions
+[contracts.dde000-governance-token]
+path = "contracts/extensions/dde000-governance-token.clar"
+depends_on = []
+
+[contracts.dde001-proposal-voting]
+path = "contracts/extensions/dde001-proposal-voting.clar"
+depends_on = []
+
+[contracts.dde002-proposal-submission]
+path = "contracts/extensions/dde002-proposal-submission.clar"
+depends_on = []
+
+[contracts.dde003-token-vault]
+path = "contracts/extensions/dde003-token-vault.clar"
+depends_on = []
+
+# proposals
+
+[contracts.ddp000-bootstrap]
+path = "contracts/proposals/ddp000-bootstrap.clar"
+depends_on = [
+    "degrants-dao",
+    "proposal-trait",
+    "extension-trait",
+]
+>>>>>>> Stashed changes
 
 # external
 [contracts.welshcorgicoin-token]
 path = "contracts/external/welshcorgicoin-token.clar"
+<<<<<<< Updated upstream
 depends_on = ["sip010-ft-trait"]
 
+=======
+depends_on = ["sip010-ft-trait", 'dde021-staked-welsh-pool']
+
+[contracts.leo-token]
+path = "contracts/external/leo-token.clar"
+depends_on = ["sip010-ft-trait"]
+>>>>>>> Stashed changes
 
 # traits
 [contracts.sip010-ft-trait]

@@ -1,4 +1,4 @@
-;; Title: DME023 Wisdom Token
+;; Title: DDE000 Governance Token
 ;; Author: rozar.btc
 ;; Depends-On: 
 ;; Synopsis:
@@ -6,7 +6,7 @@
 ;; Description:
 ;; The governance token is a simple SIP010-compliant fungible token
 ;; with some added functions to make it easier to manage by
-;; DungeonMaster proposals and extensions.
+;; DeGrants DAO proposals and extensions.
 
 (impl-trait .governance-token-trait.governance-token-trait)
 (impl-trait .sip010-ft-trait.sip010-ft-trait)
@@ -20,13 +20,13 @@
 
 (define-data-var token-name (string-ascii 32) "Wisdom")
 (define-data-var token-symbol (string-ascii 10) "WIS")
-(define-data-var token-uri (optional (string-utf8 256)) none)
+(define-data-var token-uri (optional (string-utf8 256)) (some u"https://charisma.rocks/wisdom.json"))
 (define-data-var token-decimals uint u6)
 
 ;; --- Authorization check
 
 (define-public (is-dao-or-extension)
-	(ok (asserts! (or (is-eq tx-sender .dungeon-master) (contract-call? .dungeon-master is-extension contract-caller)) err-unauthorized))
+	(ok (asserts! (or (is-eq tx-sender .degrants-dao) (contract-call? .degrants-dao is-extension contract-caller)) err-unauthorized))
 )
 
 ;; --- Internal DAO functions
