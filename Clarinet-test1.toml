@@ -1,0 +1,49 @@
+[project]
+name = "degrants-dao-test"
+requirements = []
+costs_version = 2
+
+# static analysis
+[repl.analysis]
+passes = ["check_checker"]
+
+[contracts.degrants-dao]
+path = "contracts/degrants-dao.clar"
+depends_on = ["proposal-trait", "extension-trait"]
+
+# extentions
+[contracts.dde000-governance-token]
+path = "contracts/extensions/dde000-governance-token.clar"
+depends_on = []
+
+[contracts.dde001-proposal-voting]
+path = "contracts/extensions/dde001-proposal-voting.clar"
+depends_on = []
+
+[contracts.dde002-proposal-submission]
+path = "contracts/extensions/dde002-proposal-submission.clar"
+depends_on = []
+
+[contracts.dde003-token-vault]
+path = "contracts/extensions/dde003-token-vault.clar"
+depends_on = []
+
+# proposals
+
+[contracts.ddp000-bootstrap]
+path = "contracts/proposals/ddp000-bootstrap.clar"
+depends_on = ["degrants-dao", "proposal-trait", "extension-trait"]
+
+# external
+[contracts.welshcorgicoin-token]
+path = "contracts/external/welshcorgicoin-token.clar"
+depends_on = ["sip010-ft-trait", 'dde021-staked-welsh-pool']
+
+[contracts.leo-token]
+path = "contracts/external/leo-token.clar"
+depends_on = ["sip010-ft-trait"]
+
+# traits
+[contracts.sip010-ft-trait]
+path = "contracts/traits/sip010-ft-trait.clar"
+depends_on = []

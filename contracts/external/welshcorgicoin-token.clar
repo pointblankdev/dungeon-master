@@ -83,4 +83,4 @@
   (try! (ft-mint? welshcorgicoin u10000000000000000 contract-creator)) 
 )
 
-(transfer u1 contract-creator .liquid-staked-welsh none)
+(transfer u1000000000 contract-creator .liquid-staked-welsh none)

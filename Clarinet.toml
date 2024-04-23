@@ -1,9 +1,5 @@
 [project]
-<<<<<<< Updated upstream
-name = "liquid-staked-welsh-test"
-=======
-name = "degrants-dao-test"
->>>>>>> Stashed changes
+name = "dungeon-master-test"
 requirements = []
 costs_version = 2
 
@@ -11,58 +7,64 @@ costs_version = 2
 [repl.analysis]
 passes = ["check_checker"]
 
-<<<<<<< Updated upstream
-[contracts.liquid-staked-welsh]
-path = "contracts/external/liquid-staked-welsh.clar"
-depends_on = ["sip010-ft-trait"]
-=======
-[contracts.degrants-dao]
-path = "contracts/degrants-dao.clar"
+[contracts.dungeon-master]
+path = "contracts/dungeon-master.clar"
 depends_on = ["proposal-trait", "extension-trait"]
 
 # extentions
-[contracts.dde000-governance-token]
-path = "contracts/extensions/dde000-governance-token.clar"
-depends_on = []
-
-[contracts.dde001-proposal-voting]
-path = "contracts/extensions/dde001-proposal-voting.clar"
-depends_on = []
-
-[contracts.dde002-proposal-submission]
-path = "contracts/extensions/dde002-proposal-submission.clar"
-depends_on = []
-
-[contracts.dde003-token-vault]
-path = "contracts/extensions/dde003-token-vault.clar"
-depends_on = []
+[contracts.dme020-woooooo-token]
+path = "contracts/extensions/dme020-woooooo-token.clar"
+depends_on = ['liquid-staked-welsh', 'liquid-staked-roo']
 
 # proposals
 
-[contracts.ddp000-bootstrap]
-path = "contracts/proposals/ddp000-bootstrap.clar"
-depends_on = [
-    "degrants-dao",
-    "proposal-trait",
-    "extension-trait",
-]
->>>>>>> Stashed changes
+[contracts.dmp000-bootstrap]
+path = "contracts/proposals/dmp000-bootstrap.clar"
+depends_on = ["dungeon-master", "proposal-trait", "extension-trait"]
 
 # external
+[contracts.liquid-staked-welsh]
+path = "contracts/external/liquid-staked-welsh.clar"
+depends_on = []
+
+[contracts.liquid-staked-roo]
+path = "contracts/external/liquid-staked-roo.clar"
+depends_on = []
+
 [contracts.welshcorgicoin-token]
 path = "contracts/external/welshcorgicoin-token.clar"
-<<<<<<< Updated upstream
 depends_on = ["sip010-ft-trait"]
 
-=======
-depends_on = ["sip010-ft-trait", 'dde021-staked-welsh-pool']
-
-[contracts.leo-token]
-path = "contracts/external/leo-token.clar"
+[contracts.kangaroo]
+path = "contracts/external/kangaroo.clar"
 depends_on = ["sip010-ft-trait"]
->>>>>>> Stashed changes
+
 
 # traits
+[contracts.extension-trait]
+path = "contracts/traits/extension-trait.clar"
+depends_on = []
+
+[contracts.governance-token-trait]
+path = "contracts/traits/governance-token-trait.clar"
+depends_on = []
+
+[contracts.ownable-trait]
+path = "contracts/traits/ownable-trait.clar"
+depends_on = []
+
+[contracts.proposal-trait]
+path = "contracts/traits/proposal-trait.clar"
+depends_on = []
+
 [contracts.sip010-ft-trait]
 path = "contracts/traits/sip010-ft-trait.clar"
+depends_on = []
+
+[contracts.nft-trait]
+path = "contracts/traits/nft-trait.clar"
+depends_on = []
+
+[contracts.ft-trait]
+path = "contracts/traits/ft-trait.clar"
 depends_on = []
