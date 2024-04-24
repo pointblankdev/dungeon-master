@@ -28,7 +28,7 @@
 ;;
 ;; - Minting Rewards and Fees:
 ;;   - Rewards: Minting tokens is highly incentivized with a reward factor of 100x, a subtaintial amount of Charisma tokens.
-;;   - Fees: A fee of 0.01% is applied to the minted amount, which is relatively low compared to the rewards, making minting a attractive activity within the ecosystem.
+;;   - Fees: A fee of 0.01% is applied to the minted amount, which is very low but enough to drive a fly-wheel for early adoption.
 ;;
 ;; - Burning Rewards and Fees:
 ;;   - Rewards: The reward for burning tokens is set at 1x, a nominal amount of Charisma tokens.
