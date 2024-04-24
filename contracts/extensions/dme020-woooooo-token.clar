@@ -2,14 +2,20 @@
 ;; Author: rozar.btc
 ;;
 ;; Synopsis:
-;;  The Woooooo! Token contract implements a unique fungible token on Stacks, featuring strategic fee mechanisms for minting, burning, and transferring tokens. 
+;;  The Woooooo! Token contract implements a novel fungible token on Stacks, featuring strategic fee mechanisms for minting, burning, and transferring tokens. 
 ;;  Designed to empower decentralized finance (DeFi) applications, it employs a game-theoretic fee distribution model that benefits early participants 
 ;;  by increasing the intrinsic value of sWELSH and sROO, the tokens required for minting, through micro-transaction deposits to their liquid staking pools.
+;;
+;; Unique Creation Process:
+;;  The WOO Token is uniquely "minted" through a specific process that involves combining a fixed supply two distinct tokens: sWELSH and sROO. 
+;;  This method ensures that WOO Tokens can only be created by merging these predetermined components and cannot be produced by any other means. 
+;;  This creation mechanism is intended to align both communities' incentives, while combining the liquidity of the two memecoins into one.
+;;  Additionally, the WOO Token can be "burned" back into it's base tokens, sWELSH and sROO, whenever desired.
 ;;
 ;; Core Features:
 ;;
 ;; Game-Theory Fee Model:
-;;  Token operations such as minting, burning, and transferring incorporate a nominal fee, which is deposited into the base token's liquidity pools. 
+;;  Token operations such as minting, burning, and transferring incorporate a royality fee, which is deposited into the base token's liquidity pools. 
 ;;  These fees not only enhance the value of the sWELSH, sROO and WOO tokens used in these processes but also provide direct rewards to the participants. 
 ;;  This setup creates a compelling economic incentive for early adoption and active engagement.
 ;;
@@ -21,16 +27,16 @@
 ;; Incentive Mechanisms:
 ;;
 ;; - Minting Rewards and Fees:
-;;   - Rewards: Minting tokens is highly incentivized with a reward factor of 100x, meaning that participants receive 100 times the minted amount as a reward.
+;;   - Rewards: Minting tokens is highly incentivized with a reward factor of 100x, a subtaintial amount of Charisma tokens.
 ;;   - Fees: A fee of 0.01% is applied to the minted amount, which is relatively low compared to the rewards, making minting a attractive activity within the ecosystem.
 ;;
 ;; - Burning Rewards and Fees:
-;;   - Rewards: The reward for burning tokens is set at 1x, indicating that participants receive an amount equivalent to the burned tokens as a reward.
-;;   - Fees: A fee of 1% is applied, meant to deter frequent burning to keep sWELSH and sROO communities aligned and the tokens off the market for sale.
+;;   - Rewards: The reward for burning tokens is set at 1x, a nominal amount of Charisma tokens.
+;;   - Fees: A fee of 1% is applied, meant to deter frequent burning to keep sWELSH and sROO communities aligned.
 ;;
 ;; - Transfer Rewards and Fees:
-;;   - Rewards: Transferring tokens yields a reward equivalent to the amount transferred (1x reward factor), promoting the circulation and usage of the token.
-;;   - Fees: A transfer fee of 0.1% is meant to prevent excessive on-chain movement without discouraging necessary transfers within the ecosystem.
+;;   - Rewards: Transferring tokens yields a reward of 1x, a nominal amount of Charisma tokens.
+;;   - Fees: A transfer fee of 0.1% is meant to prevent excessive on-chain jeeting without discouraging necessary transfers.
 ;;
 ;; Community Fly-Wheel:
 ;;  Fees collected from token operations are specifically directed to the liquidity pools of Liquid Staked Welsh and Liquid Staked Roo. 
@@ -43,6 +49,10 @@
 ;; Decentralized Administration:
 ;;  The protocol's parameters, including the token's name, symbol, URI, and decimals, are managed via DAO or authorized extensions. 
 ;;  This ensures that changes to the token's properties are overseen by the community, aligning with decentralized governance practices.
+;;
+;; Final Thoughts:
+;;  At the end of the day, Woooooo! is an experimental token designed to bring together the best of two great memecoin communities.
+;;  Don't ape in with your life savings, but do have fun and enjoy the ride. Woooooo!
 
 (impl-trait .sip010-ft-trait.sip010-ft-trait)
 (impl-trait .extension-trait.extension-trait)
