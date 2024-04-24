@@ -2,28 +2,47 @@
 ;; Author: rozar.btc
 ;;
 ;; Synopsis:
-;; The Woooooo! Token contract implements a fungible token on the Stacks blockchain, featuring strategic fee mechanisms for minting, 
-;; burning, and transferring tokens. Designed to empower decentralized finance (DeFi) applications, it employs a game-theoretic fee 
-;; distribution model that benefits early participants by increasing the intrinsic value of the tokens required for minting.
+;;  The Woooooo! Token contract implements a unique fungible token on Stacks, featuring strategic fee mechanisms for minting, burning, and transferring tokens. 
+;;  Designed to empower decentralized finance (DeFi) applications, it employs a game-theoretic fee distribution model that benefits early participants 
+;;  by increasing the intrinsic value of sWELSH and sROO, the tokens required for minting, through micro-transaction deposits to their liquid staking pools.
 ;;
 ;; Core Features:
 ;;
-;; Game-Theory Fee Model: 
-;; Token minting, burning, and transfers have a nominal fee applied which is deposted into the base token's liquidity pools. 
-;; Early minters benefit significantly as fees contribute to a pool that enhances the value of the tokens used in the minting process. 
-;; This increase in token value incentivizes early participation and rewards initial stakeholders; creating a compelling economic incentive for early adoption and engagement.
+;; Game-Theory Fee Model:
+;;  Token operations such as minting, burning, and transferring incorporate a nominal fee, which is deposited into the base token's liquidity pools. 
+;;  These fees not only enhance the value of the sWELSH, sROO and WOO tokens used in these processes but also provide direct rewards to the participants. 
+;;  This setup creates a compelling economic incentive for early adoption and active engagement.
 ;;
-;; Community Fly-Wheel: 
-;; Collected fees are specifically directed to the liquidity pools of Liquid Staked Welsh and Liquid Staked Roo. 
-;; These allocations boost the value of these pools, which in turn enhances the value of Woooooo! tokens by reinforcing the ecosystem's overall liquidity and financial stability.
+;; Charisma Token Rewards:
+;;  The Charisma Token is an integral part of the Dungeon Master DAO, functioning as the governance token within the Charisma app ecosystem. 
+;;  This token empowers holders by allowing them to participate in decision-making processes that shape the platform's development and tokenomics. 
+;;  As a governance tool, it ensures that the community has a vote on significant decisions, like the incentives defined within this contract.
 ;;
-;; Memecoin Consolidation: 
-;; The Woooooo! Token smart contract consolidates liquidity between memecoins, creating a flywheel effect to unite fractured liquidity. 
-;; This consolidation helps enhance market efficiency and provides a more stable trading environment for all participants.
+;; Incentive Mechanisms:
 ;;
-;; Decentralized Administration: 
-;; The protocol's parameters, including the token's name, symbol, URI, and decimals, are managed via DAO or authorized extensions. 
-;; This ensures that changes to the token's properties are overseen by the community or designated authorities; aligning with decentralized governance practices.
+;; - Minting Rewards and Fees:
+;;   - Rewards: Minting tokens is highly incentivized with a reward factor of 100x, meaning that participants receive 100 times the minted amount as a reward.
+;;   - Fees: A fee of 0.01% is applied to the minted amount, which is relatively low compared to the rewards, making minting a attractive activity within the ecosystem.
+;;
+;; - Burning Rewards and Fees:
+;;   - Rewards: The reward for burning tokens is set at 1x, indicating that participants receive an amount equivalent to the burned tokens as a reward.
+;;   - Fees: A fee of 1% is applied, meant to deter frequent burning to keep sWELSH and sROO communities aligned and the tokens off the market for sale.
+;;
+;; - Transfer Rewards and Fees:
+;;   - Rewards: Transferring tokens yields a reward equivalent to the amount transferred (1x reward factor), promoting the circulation and usage of the token.
+;;   - Fees: A transfer fee of 0.1% is meant to prevent excessive on-chain movement without discouraging necessary transfers within the ecosystem.
+;;
+;; Community Fly-Wheel:
+;;  Fees collected from token operations are specifically directed to the liquidity pools of Liquid Staked Welsh and Liquid Staked Roo. 
+;;  These allocations enhance the value of these pools, which in turn bolsters the value of Woooooo! tokens.
+;;
+;; Memecoin Consolidation:
+;;  The Woooooo! Token smart contract consolidates liquidity between various memecoins, uniting fractured liquidity in the ecosystem. 
+;;  This consolidation helps enhance market efficiency and provides a more stable trading environment for all participants.
+;;
+;; Decentralized Administration:
+;;  The protocol's parameters, including the token's name, symbol, URI, and decimals, are managed via DAO or authorized extensions. 
+;;  This ensures that changes to the token's properties are overseen by the community, aligning with decentralized governance practices.
 
 (impl-trait .sip010-ft-trait.sip010-ft-trait)
 (impl-trait .extension-trait.extension-trait)
@@ -44,8 +63,11 @@
 (define-data-var token-uri (optional (string-utf8 256)) (some u"https://charisma.rocks/woooooo.json"))
 (define-data-var token-decimals uint u4)
 
-(define-data-var mint-fee-percent uint u1000) ;; 0.1%
-(define-data-var burn-fee-percent uint u1000) ;; 0.1%
+(define-data-var mint-reward-factor uint u100) ;; 100x
+(define-data-var burn-reward-factor uint u1) ;; 1x
+(define-data-var transfer-reward-factor uint u1) ;; 1x
+(define-data-var mint-fee-percent uint u100) ;; 0.01%
+(define-data-var burn-fee-percent uint u10000) ;; 1%
 (define-data-var transfer-fee-percent uint u1000) ;; 0.1%
 (define-data-var fee-target-a principal .liquid-staked-welsh)
 (define-data-var fee-target-b principal .liquid-staked-roo)
@@ -83,6 +105,27 @@
 	(begin
 		(try! (is-dao-or-extension))
 		(ok (var-set token-uri new-uri))
+	)
+)
+
+(define-public (set-mint-reward-factor (new-mint-reward-factor uint))
+	(begin
+		(try! (is-dao-or-extension))
+		(ok (var-set mint-reward-factor new-mint-reward-factor))
+	)
+)
+
+(define-public (set-burn-reward-factor (new-burn-reward-factor uint))
+	(begin
+		(try! (is-dao-or-extension))
+		(ok (var-set burn-reward-factor new-burn-reward-factor))
+	)
+)
+
+(define-public (set-transfer-reward-factor (new-transfer-reward-factor uint))
+	(begin
+		(try! (is-dao-or-extension))
+		(ok (var-set transfer-reward-factor new-transfer-reward-factor))
 	)
 )
 
@@ -126,6 +169,7 @@
 (define-public (mint (amount uint) (recipient principal))
     (let
         (
+            (mint-reward (/ (* amount (var-get mint-reward-factor)) ONE_6))
             (amount-lsw (* amount supply-weight-w))
             (amount-lsr (* amount supply-weight-r))
             (mint-fee (/ (* amount (var-get mint-fee-percent)) ONE_6))
@@ -141,6 +185,13 @@
                 (try! (contract-call? .liquid-staked-roo transfer mint-fee-lsr tx-sender (var-get fee-target-b) none))
             )
         )
+        ;; if mint reward is greater than 0 then mint to the sender
+        (and (> mint-reward u0)
+            (begin
+                (print {mint-reward: mint-reward})
+                (try! (as-contract (contract-call? .dme000-governance-token dmg-mint mint-reward tx-sender)))
+            )
+        )
         (join amount-after-fee recipient)
     )
     
@@ -149,6 +200,7 @@
 (define-public (burn (amount uint) (recipient principal))
     (let
         (
+            (burn-reward (/ (* amount (var-get burn-reward-factor)) ONE_6))
             (amount-lsw (* amount supply-weight-w))
             (amount-lsr (* amount supply-weight-r))
             (burn-fee (/ (* amount (var-get burn-fee-percent)) ONE_6))
@@ -161,8 +213,27 @@
                 (try! (split burn-fee (var-get fee-target-a) (var-get fee-target-b)))
             )
         )
+        ;; if burn reward is greater than 0 then mint to the sender
+        (and (> burn-reward u0)
+            (begin
+                (print {burn-reward: burn-reward})
+                (try! (as-contract (contract-call? .dme000-governance-token dmg-mint burn-reward tx-sender)))
+            )
+        )
         (split amount-after-fee recipient recipient)
     )
+)
+
+(define-read-only (get-mint-reward-factor)
+	(ok (var-get mint-reward-factor))
+)
+
+(define-read-only (get-burn-reward-factor)
+	(ok (var-get burn-reward-factor))
+)
+
+(define-read-only (get-transfer-reward-factor)
+	(ok (var-get transfer-reward-factor))
 )
 
 (define-read-only (get-mint-fee-percent)
@@ -190,6 +261,7 @@
 (define-public (transfer (amount uint) (sender principal) (recipient principal) (memo (optional (buff 34))))
 	(let
         (
+            (transfer-reward (/ (* amount (var-get transfer-reward-factor)) ONE_6))
             (transfer-fee (/ (* amount (var-get transfer-fee-percent)) ONE_6))
             (amount-after-fee (- amount transfer-fee))
         )
@@ -199,6 +271,13 @@
             (begin
                 (print {tx-fee: transfer-fee})   
                 (try! (split transfer-fee (var-get fee-target-a) (var-get fee-target-b)))
+            )
+        )
+        ;; if transfer reward is greater than 0 then mint to the sender
+        (and (> transfer-reward u0)
+            (begin
+                (print {transfer-reward: transfer-reward})
+                (try! (as-contract (contract-call? .dme000-governance-token dmg-mint transfer-reward tx-sender)))
             )
         )
 		(ft-transfer? woooooo amount-after-fee sender recipient)

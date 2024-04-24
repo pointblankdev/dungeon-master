@@ -12,6 +12,10 @@ path = "contracts/dungeon-master.clar"
 depends_on = ["proposal-trait", "extension-trait"]
 
 # extentions
+[contracts.dme000-governance-token]
+path = "contracts/extensions/dme000-governance-token.clar"
+depends_on = []
+
 [contracts.dme020-woooooo-token]
 path = "contracts/extensions/dme020-woooooo-token.clar"
 depends_on = ['liquid-staked-welsh', 'liquid-staked-roo']
