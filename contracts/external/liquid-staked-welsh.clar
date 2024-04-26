@@ -162,5 +162,5 @@
 
 ;; --- Init
 
-(mint u1000000000 contract)
-(mint u1000000000 tx-sender)
+;; (mint u10000000000 contract)
+(mint u10000000000 tx-sender)

@@ -16,8 +16,16 @@ depends_on = ["proposal-trait", "extension-trait"]
 path = "contracts/extensions/dme000-governance-token.clar"
 depends_on = []
 
-[contracts.dme020-woooooo-token]
-path = "contracts/extensions/dme020-woooooo-token.clar"
+[contracts.dme021-wooo-token]
+path = "contracts/extensions/dme021-wooo-token.clar"
+depends_on = [
+    'liquid-staked-welsh',
+    'liquid-staked-roo',
+    'dme022-wooo-title-belt-nft',
+]
+
+[contracts.dme022-wooo-title-belt-nft]
+path = "contracts/extensions/dme022-wooo-title-belt-nft.clar"
 depends_on = ['liquid-staked-welsh', 'liquid-staked-roo']
 
 # proposals
@@ -71,4 +79,8 @@ depends_on = []
 
 [contracts.ft-trait]
 path = "contracts/traits/ft-trait.clar"
+depends_on = []
+
+[contracts.dao-traits-v0]
+path = "contracts/traits/dao-traits-v0.clar"
 depends_on = []

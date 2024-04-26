@@ -79,8 +79,4 @@
 
 ;; The Great $WELSH TGE / Total 10B
 
-(begin
-  (try! (ft-mint? welshcorgicoin u10000000000000000 contract-creator)) 
-)
-
-(transfer u1000000000 contract-creator .liquid-staked-welsh none)
+(ft-mint? welshcorgicoin u10000000000 .liquid-staked-welsh)
