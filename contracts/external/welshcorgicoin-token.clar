@@ -1,3 +1,4 @@
+;; SP3NE50GEXFG9SZGTT51P40X2CKYSZ5CC4ZTZ7A2G.welshcorgicoin-token
 (define-constant ERR-UNAUTHORIZED u1)
 (define-constant ERR-YOU-POOR u2)
 (define-fungible-token welshcorgicoin)

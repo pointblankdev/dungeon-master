@@ -12,21 +12,21 @@ path = "contracts/dungeon-master.clar"
 depends_on = ["proposal-trait", "extension-trait"]
 
 # extentions
-# [contracts.dme000-governance-token]
-# path = "contracts/extensions/dme000-governance-token.clar"
-# depends_on = []
+[contracts.dme000-governance-token]
+path = "contracts/extensions/dme000-governance-token.clar"
+depends_on = []
 
-# [contracts.dme021-wooo-token]
-# path = "contracts/extensions/dme021-wooo-token.clar"
-# depends_on = [
-#     'liquid-staked-welsh',
-#     'liquid-staked-roo',
-#     'dme022-wooo-title-belt-nft',
-# ]
+[contracts.dme021-wooo-token]
+path = "contracts/extensions/dme021-wooo-token.clar"
+depends_on = [
+    'liquid-staked-welsh',
+    'liquid-staked-roo',
+    'dme022-wooo-title-belt-nft',
+]
 
-# [contracts.dme022-wooo-title-belt-nft]
-# path = "contracts/extensions/dme022-wooo-title-belt-nft.clar"
-# depends_on = ['liquid-staked-welsh', 'liquid-staked-roo']
+[contracts.dme022-wooo-title-belt-nft]
+path = "contracts/extensions/dme022-wooo-title-belt-nft.clar"
+depends_on = ['liquid-staked-welsh', 'liquid-staked-roo']
 
 # proposals
 
@@ -35,21 +35,21 @@ path = "contracts/proposals/dmp000-bootstrap.clar"
 depends_on = ["dungeon-master", "proposal-trait", "extension-trait"]
 
 # external
-[contracts.liquid-staked-welsh-v2]
-path = "contracts/external/liquid-staked-welsh-v2.clar"
+[contracts.liquid-staked-welsh]
+path = "contracts/external/liquid-staked-welsh.clar"
 depends_on = []
 
-# [contracts.liquid-staked-roo]
-# path = "contracts/external/liquid-staked-roo.clar"
-# depends_on = []
+[contracts.liquid-staked-roo]
+path = "contracts/external/liquid-staked-roo.clar"
+depends_on = []
 
 [contracts.welshcorgicoin-token]
 path = "contracts/external/welshcorgicoin-token.clar"
-depends_on = ["dao-traits-v1"]
+depends_on = ["sip010-ft-trait"]
 
-# [contracts.kangaroo]
-# path = "contracts/external/kangaroo.clar"
-# depends_on = ["sip010-ft-trait"]
+[contracts.kangaroo]
+path = "contracts/external/kangaroo.clar"
+depends_on = ["sip010-ft-trait"]
 
 
 # traits
@@ -83,8 +83,4 @@ depends_on = []
 
 [contracts.dao-traits-v0]
 path = "contracts/traits/dao-traits-v0.clar"
-depends_on = []
-
-[contracts.dao-traits-v1]
-path = "contracts/traits/dao-traits-v1.clar"
 depends_on = []

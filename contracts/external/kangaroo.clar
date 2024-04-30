@@ -23,7 +23,7 @@
 ;; This contract implements the SIP-010 community-standard Fungible Token trait.
 (impl-trait .sip010-ft-trait.sip010-ft-trait)
 
-
+;; SP2C1WREHGM75C7TGFAEJPFKTFTEGZKF6DFT6E2GE.kangaroo
 
 ;; Define errors
 (define-constant ERR_NOT_MINTER (err u200))
