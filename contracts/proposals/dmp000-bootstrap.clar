@@ -16,17 +16,19 @@
 		;; Enable genesis extensions.
 		(try! (contract-call? .dungeon-master set-extensions
 			(list
-				;; {extension: .dme000-governance-token, enabled: true}
-				;; {extension: .dme001-proposal-voting, enabled: true}
-				;; {extension: .dme002-proposal-submission, enabled: true}
-				;; {extension: .dme003-emergency-proposals, enabled: true}
-				;; {extension: .dme004-emergency-execute, enabled: true}
-				;; dev debug
-				{extension: .dme020-liquid-staked-welsh, enabled: true}
-				{extension: .dme021-staked-welsh-pool, enabled: true}
-				{extension: .dme022-staked-welsh-helper, enabled: true}
+				{extension: .dme000-governance-token, enabled: true}
+				{extension: .dme024-liquid-staking-pools, enabled: true}
+				{extension: .dme025-crafting-helper, enabled: true}
+				{extension: .fenrir-token, enabled: true}
 			)		
 			
+		))
+
+		;; Mint initial token supply.
+		(try! (contract-call? .dme000-governance-token dmg-mint-many
+			(list
+				{amount: u1, recipient: tx-sender}
+			)
 		))
 
 		;; (try! (contract-call? .dme008-quest-metadata set-metadata u0 (as-max-len? u"hello" u256)))

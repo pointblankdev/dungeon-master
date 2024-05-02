@@ -1,16 +1,16 @@
-;; Title: Liquid Staked Welsh v2
+;; Title: Liquid Staked Odin
 ;; Author: rozar.btc
 ;; Synopsis:
-;; This contract implements a liquid staking solution for Welsh.
-;; It provides users with liquid tokens (sWELSH) that represent staked Welsh. 
+;; This contract implements a liquid staking solution for Odin.
+;; It provides users with liquid tokens (sODIN) that represent staked Odin. 
 ;; This allows users to retain liquidity while participating in staking.
 
-;; SP3NE50GEXFG9SZGTT51P40X2CKYSZ5CC4ZTZ7A2G.welshcorgicoin-token
+;; SP2X2Z28NXZVJFCJPBR9Q3NBVYBK3GPX8PXA3R83C.odin-tkn
 ;; SP2D5BGGJ956A635JG7CJQ59FTRFRB0893514EZPJ
 
 (impl-trait .dao-traits-v1.sip010-ft-trait)
 
-(define-fungible-token liquid-staked-token)
+(define-fungible-token liquid-staked-odin)
 
 (define-constant err-unauthorized (err u3000))
 (define-constant err-not-token-owner (err u4))
@@ -19,9 +19,9 @@
 
 (define-constant contract (as-contract tx-sender))
 
-(define-data-var token-name (string-ascii 32) "Liquid Staked Welsh v2")
-(define-data-var token-symbol (string-ascii 10) "sWELSH")
-(define-data-var token-uri (optional (string-utf8 256)) (some u"https://charisma.rocks/liquid-staked-welshcorgicoin.json"))
+(define-data-var token-name (string-ascii 32) "Liquid Staked Odin")
+(define-data-var token-symbol (string-ascii 10) "sODIN")
+(define-data-var token-uri (optional (string-utf8 256)) (some u"https://charisma.rocks/liquid-staked-odin.json"))
 (define-data-var token-decimals uint u6)
 
 ;; --- Authorization check
@@ -37,11 +37,11 @@
 		(let
 			(
 				(inverse-rate (get-inverse-rate))
-				(amount-lst (/ (* amount inverse-rate) ONE_6))
+				(amount-lso (/ (* amount inverse-rate) ONE_6))
 				(sender tx-sender)
 			)
-			(try! (contract-call? .welshcorgicoin-token transfer amount sender contract none))
-			(try! (mint amount-lst sender))
+			(try! (contract-call? .odin-tkn transfer amount sender contract none))
+			(try! (mint amount-lso sender))
 		)
 		(ok true)
 	)
@@ -52,18 +52,18 @@
 		(let
 			(
 				(exchange-rate (get-exchange-rate))
-				(amount-token (/ (* amount exchange-rate) ONE_6))
+				(amount-odin (/ (* amount exchange-rate) ONE_6))
 				(sender tx-sender)
 			)
 			(try! (burn amount sender))
-			(try! (as-contract (contract-call? .welshcorgicoin-token transfer amount-token contract sender none)))
+			(try! (as-contract (contract-call? .odin-tkn transfer amount-odin contract sender none)))
 		)
 		(ok true)
 	)
 )
 
 (define-public (deposit (amount uint))
-    (contract-call? .welshcorgicoin-token transfer amount tx-sender contract none)
+    (contract-call? .odin-tkn transfer amount tx-sender contract none)
 )
 
 (define-public (deflate (amount uint))
@@ -111,7 +111,7 @@
 (define-public (transfer (amount uint) (sender principal) (recipient principal) (memo (optional (buff 34))))
 	(begin
 		(asserts! (or (is-eq tx-sender sender) (is-eq contract-caller sender)) err-not-token-owner)
-		(ft-transfer? liquid-staked-token amount sender recipient)
+		(ft-transfer? liquid-staked-odin amount sender recipient)
 	)
 )
 
@@ -128,39 +128,41 @@
 )
 
 (define-read-only (get-balance (who principal))
-	(ok (ft-get-balance liquid-staked-token who))
+	(ok (ft-get-balance liquid-staked-odin who))
 )
 
 (define-read-only (get-total-supply)
-	(ok (ft-get-supply liquid-staked-token))
+	(ok (ft-get-supply liquid-staked-odin))
 )
 
 (define-read-only (get-token-uri)
 	(ok (var-get token-uri))
 )
 
-(define-read-only (get-total-in-pool)
-	(unwrap-panic (contract-call? .welshcorgicoin-token get-balance contract))
+(define-read-only (get-total-odin-in-pool)
+	(unwrap-panic (contract-call? .odin-tkn get-balance contract))
 )
 
 (define-read-only (get-exchange-rate)
-	(/ (* (get-total-in-pool) ONE_6) (ft-get-supply liquid-staked-token))
+	(/ (* (get-total-odin-in-pool) ONE_6) (ft-get-supply liquid-staked-odin))
 )
 
 (define-read-only (get-inverse-rate)
-	(/ (* (ft-get-supply liquid-staked-token) ONE_6) (get-total-in-pool))
+	(/ (* (ft-get-supply liquid-staked-odin) ONE_6) (get-total-odin-in-pool))
 )
 
 ;; --- Private functions
 
 (define-private (mint (amount uint) (recipient principal))
-    (ft-mint? liquid-staked-token amount recipient)
+    (ft-mint? liquid-staked-odin amount recipient)
 )
 
 (define-private (burn (amount uint) (owner principal))
-    (ft-burn? liquid-staked-token amount owner)
+    (ft-burn? liquid-staked-odin amount owner)
 )
 
 ;; --- Init
 
 (mint u1 contract)
+(mint u1 .fenrir-token)
+(mint u1000000000000 tx-sender)
