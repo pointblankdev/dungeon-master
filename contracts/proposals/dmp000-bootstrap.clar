@@ -31,6 +31,8 @@
 			)
 		))
 
+		(try! (contract-call? .dme025-crafting-helper set-crafting-recipe .fenrir-corgi-of-ragnarok .liquid-staked-welsh-v2 .liquid-staked-odin))
+
 		;; (try! (contract-call? .dme008-quest-metadata set-metadata u0 (as-max-len? u"hello" u256)))
 		;; (try! (contract-call? .dme009-charisma-rewards set-rewards u0 u100))
 		;; (try! (contract-call? .dme014-stx-rewards set-rewards u0 u100))

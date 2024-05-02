@@ -164,5 +164,5 @@
 ;; --- Init
 
 (mint u1 contract)
-(mint u1 .fenrir-token)
+(mint u1 .fenrir-corgi-of-ragnarok)
 (mint u1000000000000 tx-sender)

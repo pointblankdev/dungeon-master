@@ -52,7 +52,7 @@
 	)
 )
 
-(define-trait recipe-trait
+(define-trait craftable-trait
 	(
 		(craft (uint principal <liquid-ft-trait> <liquid-ft-trait>) (response bool uint))
 		(salvage (uint principal <liquid-ft-trait> <liquid-ft-trait>) (response bool uint))

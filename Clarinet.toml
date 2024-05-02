@@ -25,8 +25,8 @@ path = "contracts/extensions/dme025-crafting-helper.clar"
 depends_on = []
 
 # crafting
-[contracts.fenrir-token]
-path = "contracts/crafting/fenrir-token.clar"
+[contracts.fenrir-corgi-of-ragnarok]
+path = "contracts/crafting/fenrir-corgi-of-ragnarok.clar"
 depends_on = []
 
 # external

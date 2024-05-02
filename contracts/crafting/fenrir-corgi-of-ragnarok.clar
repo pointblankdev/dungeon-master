@@ -1,4 +1,4 @@
-;; Title: Fenrir Token
+;; Title: Fenrir, Corgi of Ragnarok
 ;; Author: rozar.btc
 
 ;; In the mystical realm of Asgard, there lived a colossal creature named Fenrir, feared by the gods and prophesied to bring about the end of the world. 
@@ -12,6 +12,8 @@
 
 (impl-trait .dao-traits-v2.sip010-ft-trait)
 (impl-trait .dao-traits-v2.extension-trait)
+(impl-trait .dao-traits-v2.liquid-ft-trait)
+(impl-trait .dao-traits-v2.craftable-trait)
 
 (use-trait liquid-ft-trait .dao-traits-v2.liquid-ft-trait)
 
@@ -34,8 +36,8 @@
 (define-data-var transfer-reward-factor uint u0)
 
 (define-data-var craft-fee-percent uint u100) ;; 0.01%
-(define-data-var salvage-fee-percent uint u100) ;; 0.01%
-(define-data-var transfer-fee-percent uint u1000) ;; 0.1%
+(define-data-var salvage-fee-percent uint u1000) ;; 0.1%
+(define-data-var transfer-fee-percent uint u10000) ;; 1%
 
 ;; --- Authorization check
 
@@ -106,7 +108,7 @@
 (define-public (set-craft-fee-percent (new-craft-fee-percent uint))
 	(begin
 		(try! (is-dao-or-extension))
-        (asserts! (<= new-craft-fee-percent u10000) err-unauthorized)
+        (asserts! (<= new-craft-fee-percent u50000) err-unauthorized)
 		(ok (var-set craft-fee-percent new-craft-fee-percent))
 	)
 )
@@ -114,7 +116,7 @@
 (define-public (set-salvage-fee-percent (new-salvage-fee-percent uint))
 	(begin
 		(try! (is-dao-or-extension))
-        (asserts! (<= new-salvage-fee-percent u10000) err-unauthorized)
+        (asserts! (<= new-salvage-fee-percent u50000) err-unauthorized)
 		(ok (var-set salvage-fee-percent new-salvage-fee-percent))
 	)
 )
@@ -122,7 +124,7 @@
 (define-public (set-transfer-fee-percent (new-transfer-fee-percent uint))
 	(begin
 		(try! (is-dao-or-extension))
-        (asserts! (<= new-transfer-fee-percent u10000) err-unauthorized)
+        (asserts! (<= new-transfer-fee-percent u50000) err-unauthorized)
 		(ok (var-set transfer-fee-percent new-transfer-fee-percent))
 	)
 )
@@ -272,23 +274,18 @@
 	(/ (* (get-total-in-pool lft) ONE_6) (ft-get-supply fenrir))
 )
 
-(define-private (get-inverse-rate (lft <liquid-ft-trait>))
-	(/ (* (ft-get-supply fenrir) ONE_6) (get-total-in-pool lft))
-)
-
 ;; --- Crafting
 
 (define-private (join (amount uint) (recipient principal) (lft-a <liquid-ft-trait>) (lft-b <liquid-ft-trait>))
     (let
         (
-            (amount-lsw (/ (* amount (get-inverse-rate lft-a)) ONE_6))
-            (amount-lso (/ (* amount (get-inverse-rate lft-b)) ONE_6))
+            (amount-lft-a (/ (* amount (get-exchange-rate lft-a)) ONE_6))
+            (amount-lft-b (/ (* amount (get-exchange-rate lft-b)) ONE_6))
         )
-        (try! (contract-call? lft-a transfer amount-lsw tx-sender contract none))
-        (try! (contract-call? lft-b transfer amount-lso tx-sender contract none))
+        (print {exchange-rate-a: (get-exchange-rate lft-a), exchange-rate-b: (get-exchange-rate lft-b)})
+        (try! (contract-call? lft-a transfer amount-lft-a tx-sender contract none))
+        (try! (contract-call? lft-b transfer amount-lft-b tx-sender contract none))
         (try! (ft-mint? fenrir amount recipient))
-        (print {exchange-rate-a: (get-exchange-rate lft-a)})
-        (print {exchange-rate-b: (get-exchange-rate lft-b)})
         (ok true)
     )
 )
@@ -296,14 +293,13 @@
 (define-private (split (amount uint) (recipient principal) (lft-a <liquid-ft-trait>) (lft-b <liquid-ft-trait>))
     (let
         (
-            (amount-lsw (/ (* amount (get-exchange-rate lft-a)) ONE_6))
-            (amount-lso (/ (* amount (get-exchange-rate lft-b)) ONE_6))
+            (amount-lft-a (/ (* amount (get-exchange-rate lft-a)) ONE_6))
+            (amount-lft-b (/ (* amount (get-exchange-rate lft-b)) ONE_6))
         )
+        (print {exchange-rate-a: (get-exchange-rate lft-a), exchange-rate-b: (get-exchange-rate lft-b)})
         (try! (ft-burn? fenrir amount tx-sender))
-        (try! (contract-call? lft-a transfer amount-lsw contract recipient none))
-        (try! (contract-call? lft-b transfer amount-lso contract recipient none))
-        (print {exchange-rate-a: (get-exchange-rate lft-a)})
-        (print {exchange-rate-b: (get-exchange-rate lft-b)})
+        (try! (contract-call? lft-a transfer amount-lft-a contract recipient none))
+        (try! (contract-call? lft-b transfer amount-lft-b contract recipient none))
         (ok true)
     )
 )
@@ -317,4 +313,4 @@
 ;; --- Init
 
 (ft-mint? fenrir u1 contract)
-;; (ft-mint? fenrir u10000 tx-sender)
+;; (ft-mint? fenrir u1000 tx-sender)
