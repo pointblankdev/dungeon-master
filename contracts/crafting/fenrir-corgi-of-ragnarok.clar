@@ -313,4 +313,3 @@
 ;; --- Init
 
 (ft-mint? fenrir u1 contract)
-;; (ft-mint? fenrir u1000 tx-sender)
