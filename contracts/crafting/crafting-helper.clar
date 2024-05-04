@@ -74,3 +74,8 @@
     lsp-a: .liquid-staked-welsh-v2,
     lsp-b: .liquid-staked-odin
 })
+
+(map-set crafting-recipes .woo-meme-world-champion {
+    lsp-a: .liquid-staked-welsh-v2,
+    lsp-b: .liquid-staked-roo-v2
+})

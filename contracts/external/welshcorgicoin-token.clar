@@ -80,4 +80,4 @@
 
 ;; The Great $WELSH TGE / Total 10B
 
-(ft-mint? welshcorgicoin u10000000000 .liquid-staked-welsh)
+(ft-mint? welshcorgicoin u10000000000 .liquid-staked-welsh-v2)

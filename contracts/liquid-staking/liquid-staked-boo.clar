@@ -1,12 +1,9 @@
-;; Title: Liquid Staked Welsh v2
+;; Title: Liquid Staked Pomboo
 ;; Author: rozar.btc
 ;; Synopsis:
-;; This contract implements a liquid staking solution for Welsh.
-;; It provides users with liquid tokens (sWELSH) that represent staked Welsh. 
+;; This contract implements a liquid staking solution for Pomboo.
+;; It provides users with liquid tokens (sPOMBOO) that represent staked Pomboo. 
 ;; This allows users to retain liquidity while participating in staking.
-
-;; SP3NE50GEXFG9SZGTT51P40X2CKYSZ5CC4ZTZ7A2G.welshcorgicoin-token
-;; SP2D5BGGJ956A635JG7CJQ59FTRFRB0893514EZPJ
 
 (impl-trait .dao-traits-v1.sip010-ft-trait)
 
@@ -19,15 +16,15 @@
 
 (define-constant contract (as-contract tx-sender))
 
-(define-data-var token-name (string-ascii 32) "Liquid Staked Welsh v2")
-(define-data-var token-symbol (string-ascii 10) "sWELSH")
-(define-data-var token-uri (optional (string-utf8 256)) (some u"https://charisma.rocks/liquid-staked-welshcorgicoin.json"))
-(define-data-var token-decimals uint u6)
+(define-data-var token-name (string-ascii 32) "Liquid Staked Pomboo")
+(define-data-var token-symbol (string-ascii 10) "sBOO")
+(define-data-var token-uri (optional (string-utf8 256)) (some u"https://charisma.rocks/liquid-staked-pomboo.json"))
+(define-data-var token-decimals uint u8)
 
 ;; --- Authorization check
 
 (define-public (is-dao-or-extension)
-	(ok (asserts! (or (is-eq tx-sender .dungeon-master) (contract-call? .dungeon-master is-extension contract-caller)) err-unauthorized))
+	(ok (asserts! (or (is-eq tx-sender 'SP2D5BGGJ956A635JG7CJQ59FTRFRB0893514EZPJ.dungeon-master) (contract-call? 'SP2D5BGGJ956A635JG7CJQ59FTRFRB0893514EZPJ.dungeon-master is-extension contract-caller)) err-unauthorized))
 )
 
 ;; --- Public functions
@@ -40,7 +37,7 @@
 				(amount-lst (/ (* amount inverse-rate) ONE_6))
 				(sender tx-sender)
 			)
-			(try! (contract-call? .welshcorgicoin-token transfer amount sender contract none))
+			(try! (contract-call? 'SP1N4EXSR8DP5GRN2XCWZEW9PR32JHNRYW7MVPNTA.PomerenianBoo-Pomboo transfer amount sender contract none))
 			(try! (mint amount-lst sender))
 		)
 		(ok true)
@@ -56,20 +53,19 @@
 				(sender tx-sender)
 			)
 			(try! (burn amount sender))
-			(try! (as-contract (contract-call? .welshcorgicoin-token transfer amount-token contract sender none)))
+			(try! (as-contract (contract-call? 'SP1N4EXSR8DP5GRN2XCWZEW9PR32JHNRYW7MVPNTA.PomerenianBoo-Pomboo transfer amount-token contract sender none)))
 		)
 		(ok true)
 	)
 )
 
 (define-public (deposit (amount uint))
-    (contract-call? .welshcorgicoin-token transfer amount tx-sender contract none)
+    (contract-call? 'SP1N4EXSR8DP5GRN2XCWZEW9PR32JHNRYW7MVPNTA.PomerenianBoo-Pomboo transfer amount tx-sender contract none)
 )
 
 (define-public (deflate (amount uint))
     (burn amount tx-sender)
 )
-
 
 (define-public (set-name (new-name (string-ascii 32)))
 	(begin
@@ -140,7 +136,7 @@
 )
 
 (define-read-only (get-total-in-pool)
-	(unwrap-panic (contract-call? .welshcorgicoin-token get-balance contract))
+	(unwrap-panic (contract-call? 'SP1N4EXSR8DP5GRN2XCWZEW9PR32JHNRYW7MVPNTA.PomerenianBoo-Pomboo get-balance contract))
 )
 
 (define-read-only (get-exchange-rate)
@@ -164,5 +160,10 @@
 ;; --- Init
 
 (mint u1 contract)
-(mint u250 .woo-meme-world-champion)
-(mint u1000000000000 tx-sender)
+(print {
+	notification: "token-metadata-update",
+	payload: {
+		contract-id: (as-contract tx-sender),
+		token-class: "ft"
+	}
+})

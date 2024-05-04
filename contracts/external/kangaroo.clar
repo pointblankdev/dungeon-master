@@ -115,4 +115,4 @@
 ;;
 
 ;; (ft-mint? kangaroo u42000000 tx-sender)
-(ft-mint? kangaroo u42000000 .liquid-staked-roo)
+(ft-mint? kangaroo u42000000 .liquid-staked-roo-v2)

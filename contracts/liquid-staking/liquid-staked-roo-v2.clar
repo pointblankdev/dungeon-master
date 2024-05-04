@@ -164,3 +164,5 @@
 ;; --- Init
 
 (mint u1 contract)
+(mint u1 .woo-meme-world-champion)
+(mint u42000000 tx-sender)
