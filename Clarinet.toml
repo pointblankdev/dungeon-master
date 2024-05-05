@@ -21,8 +21,21 @@ path = "contracts/crafting/crafting-helper.clar"
 depends_on = []
 
 # crafting
-[contracts.woo-meme-world-champion]
-path = "contracts/crafting/woo-meme-world-champion.clar"
+[contracts.fenrir-corgi-of-ragnarok]
+path = "contracts/crafting/fenrir-corgi-of-ragnarok.clar"
+depends_on = []
+
+# apps
+[contracts.odins-raven]
+path = "contracts/apps/odins-raven.clar"
+depends_on = []
+
+[contracts.champions-faucet]
+path = "contracts/apps/champions-faucet.clar"
+depends_on = []
+
+[contracts.dme023-wooo-title-belt-nft]
+path = "contracts/apps/dme023-wooo-title-belt-nft.clar"
 depends_on = []
 
 # external
@@ -30,16 +43,16 @@ depends_on = []
 path = "contracts/liquid-staking/liquid-staked-welsh-v2.clar"
 depends_on = []
 
-[contracts.liquid-staked-roo-v2]
-path = "contracts/liquid-staking/liquid-staked-roo-v2.clar"
+[contracts.liquid-staked-odin]
+path = "contracts/liquid-staking/liquid-staked-odin.clar"
 depends_on = []
 
 [contracts.welshcorgicoin-token]
 path = "contracts/external/welshcorgicoin-token.clar"
 depends_on = ["dao-traits-v1"]
 
-[contracts.kangaroo]
-path = "contracts/external/kangaroo.clar"
+[contracts.odin-tkn]
+path = "contracts/external/odin-tkn.clar"
 depends_on = ["sip010-ft-trait"]
 
 # proposals

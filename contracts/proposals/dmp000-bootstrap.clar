@@ -19,7 +19,8 @@
 				{extension: .dme000-governance-token, enabled: true}
 				{extension: .dme024-liquid-staking-pools, enabled: true}
 				{extension: .crafting-helper, enabled: true}
-				{extension: .woo-meme-world-champion, enabled: true}
+				{extension: .fenrir-corgi-of-ragnarok, enabled: true}
+				{extension: .odins-raven, enabled: true}
 			)		
 			
 		))
@@ -31,7 +32,7 @@
 			)
 		))
 
-		(try! (contract-call? .crafting-helper set-crafting-recipe .woo-meme-world-champion .liquid-staked-welsh-v2 .liquid-staked-roo-v2))
+		;; (try! (contract-call? .crafting-helper set-crafting-recipe .woo-meme-world-champion .liquid-staked-welsh-v2 .liquid-staked-roo-v2))
 
 		;; (try! (contract-call? .dme008-quest-metadata set-metadata u0 (as-max-len? u"hello" u256)))
 		;; (try! (contract-call? .dme009-charisma-rewards set-rewards u0 u100))

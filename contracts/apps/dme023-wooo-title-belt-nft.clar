@@ -87,7 +87,8 @@
 )
 
 (define-read-only (get-balance (owner principal))
-    (unwrap-panic (contract-call? .dme021-wooo-token get-balance owner))
+    ;; (unwrap-panic (contract-call? .dme021-wooo-token get-balance owner))
+    u1
 )
 
 (define-read-only (get-title-holder-balance)
