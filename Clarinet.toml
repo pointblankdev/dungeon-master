@@ -38,6 +38,12 @@ depends_on = []
 path = "contracts/apps/dme023-wooo-title-belt-nft.clar"
 depends_on = []
 
+# swaps
+[contracts.swap-wrapper-v1]
+path = "contracts/swaps/swap-wrapper-v1.clar"
+depends_on = []
+
+
 # external
 [contracts.liquid-staked-welsh-v2]
 path = "contracts/liquid-staking/liquid-staked-welsh-v2.clar"
@@ -53,6 +59,26 @@ depends_on = ["dao-traits-v1"]
 
 [contracts.odin-tkn]
 path = "contracts/external/odin-tkn.clar"
+depends_on = ["sip010-ft-trait"]
+
+[contracts.univ2-router]
+path = "contracts/external/univ2-router.clar"
+depends_on = ["sip010-ft-trait"]
+
+[contracts.univ2-core]
+path = "contracts/external/univ2-core.clar"
+depends_on = ["sip010-ft-trait"]
+
+[contracts.univ2-library]
+path = "contracts/external/univ2-library.clar"
+depends_on = ["sip010-ft-trait"]
+
+[contracts.wstx]
+path = "contracts/external/wstx.clar"
+depends_on = ["sip010-ft-trait"]
+
+[contracts.univ2-share-fee-to]
+path = "contracts/external/univ2-share-fee-to.clar"
 depends_on = ["sip010-ft-trait"]
 
 # proposals
