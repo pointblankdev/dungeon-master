@@ -39,8 +39,8 @@ path = "contracts/apps/dme023-wooo-title-belt-nft.clar"
 depends_on = []
 
 # swaps
-[contracts.swap-wrapper-v1]
-path = "contracts/swaps/swap-wrapper-v1.clar"
+[contracts.swap-wrapper-v3]
+path = "contracts/swaps/swap-wrapper-v3.clar"
 depends_on = []
 
 
