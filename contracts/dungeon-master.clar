@@ -1,8 +1,8 @@
 ;; DungeonMaster is the fun DAO to rule them all. 
 ;; By Ross Ragsdale
 
-(use-trait proposal-trait .proposal-trait.proposal-trait)
-(use-trait extension-trait .extension-trait.extension-trait)
+(use-trait proposal-trait .dao-traits-v2.proposal-trait)
+(use-trait extension-trait .dao-traits-v2.extension-trait)
 
 (define-constant err-unauthorized (err u1000))
 (define-constant err-already-executed (err u1001))

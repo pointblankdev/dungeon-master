@@ -8,9 +8,9 @@
 ;; with some added functions to make it easier to manage by
 ;; DungeonMaster proposals and extensions.
 
-(impl-trait .governance-token-trait.governance-token-trait)
-(impl-trait .sip010-ft-trait.sip010-ft-trait)
-(impl-trait .extension-trait.extension-trait)
+(impl-trait .dao-traits-v2.governance-token-trait)
+(impl-trait .dao-traits-v2.sip010-ft-trait)
+(impl-trait .dao-traits-v2.extension-trait)
 
 (define-constant err-unauthorized (err u3000))
 (define-constant err-not-token-owner (err u4))

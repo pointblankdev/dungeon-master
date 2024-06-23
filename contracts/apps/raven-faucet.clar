@@ -90,10 +90,10 @@
 
 ;; --- Proposal function
 
-(define-public (execute (sender principal))
-	(begin
-		(try! (contract-call? 'SP2D5BGGJ956A635JG7CJQ59FTRFRB0893514EZPJ.dungeon-master set-extension contract true))
-		(set-drip-amount u10000000)
-        (ok true)
-	)
-)
+;; (define-public (execute (sender principal))
+;; 	(begin
+;; 		(try! (contract-call? 'SP2D5BGGJ956A635JG7CJQ59FTRFRB0893514EZPJ.dungeon-master set-extension contract true))
+;; 		(set-drip-amount u10000000)
+;;         (ok true)
+;; 	)
+;; )

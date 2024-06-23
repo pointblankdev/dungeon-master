@@ -1,0 +1,129 @@
+[project]
+name = "dungeon-master-test"
+requirements = []
+costs_version = 2
+
+# static analysis
+[repl.analysis]
+passes = ["check_checker"]
+
+[contracts.dungeon-master]
+path = "contracts/dungeon-master.clar"
+depends_on = ["proposal-trait", "extension-trait"]
+
+# extentions
+[contracts.dme000-governance-token]
+path = "contracts/extensions/dme000-governance-token.clar"
+depends_on = []
+
+[contracts.crafting-helper]
+path = "contracts/crafting/crafting-helper.clar"
+depends_on = []
+
+# crafting
+[contracts.fenrir-corgi-of-ragnarok]
+path = "contracts/crafting/fenrir-corgi-of-ragnarok.clar"
+depends_on = []
+
+# apps
+[contracts.odins-raven]
+path = "contracts/apps/odins-raven.clar"
+depends_on = []
+
+[contracts.champions-faucet]
+path = "contracts/apps/champions-faucet.clar"
+depends_on = []
+
+[contracts.dme023-wooo-title-belt-nft]
+path = "contracts/apps/dme023-wooo-title-belt-nft.clar"
+depends_on = []
+
+# swaps
+[contracts.swap-wrapper-v3]
+path = "contracts/swaps/swap-wrapper-v3.clar"
+depends_on = []
+
+
+# external
+[contracts.liquid-staked-welsh-v2]
+path = "contracts/liquid-staking/liquid-staked-welsh-v2.clar"
+depends_on = []
+
+[contracts.liquid-staked-odin]
+path = "contracts/liquid-staking/liquid-staked-odin.clar"
+depends_on = []
+
+[contracts.welshcorgicoin-token]
+path = "contracts/external/welshcorgicoin-token.clar"
+depends_on = ["dao-traits-v1"]
+
+[contracts.odin-tkn]
+path = "contracts/external/odin-tkn.clar"
+depends_on = ["sip010-ft-trait"]
+
+[contracts.univ2-router]
+path = "contracts/external/univ2-router.clar"
+depends_on = ["sip010-ft-trait"]
+
+[contracts.univ2-core]
+path = "contracts/external/univ2-core.clar"
+depends_on = ["sip010-ft-trait"]
+
+[contracts.univ2-library]
+path = "contracts/external/univ2-library.clar"
+depends_on = ["sip010-ft-trait"]
+
+[contracts.wstx]
+path = "contracts/external/wstx.clar"
+depends_on = ["sip010-ft-trait"]
+
+[contracts.univ2-share-fee-to]
+path = "contracts/external/univ2-share-fee-to.clar"
+depends_on = ["sip010-ft-trait"]
+
+# proposals
+[contracts.dmp000-bootstrap]
+path = "contracts/proposals/dmp000-bootstrap.clar"
+depends_on = ["dungeon-master", "proposal-trait", "extension-trait"]
+
+
+# traits
+[contracts.extension-trait]
+path = "contracts/traits/extension-trait.clar"
+depends_on = []
+
+[contracts.governance-token-trait]
+path = "contracts/traits/governance-token-trait.clar"
+depends_on = []
+
+[contracts.ownable-trait]
+path = "contracts/traits/ownable-trait.clar"
+depends_on = []
+
+[contracts.proposal-trait]
+path = "contracts/traits/proposal-trait.clar"
+depends_on = []
+
+[contracts.sip010-ft-trait]
+path = "contracts/traits/sip010-ft-trait.clar"
+depends_on = []
+
+[contracts.nft-trait]
+path = "contracts/traits/nft-trait.clar"
+depends_on = []
+
+[contracts.ft-trait]
+path = "contracts/traits/ft-trait.clar"
+depends_on = []
+
+[contracts.dao-traits-v0]
+path = "contracts/traits/dao-traits-v0.clar"
+depends_on = []
+
+[contracts.dao-traits-v1]
+path = "contracts/traits/dao-traits-v1.clar"
+depends_on = []
+
+[contracts.dao-traits-v2]
+path = "contracts/traits/dao-traits-v2.clar"
+depends_on = []
