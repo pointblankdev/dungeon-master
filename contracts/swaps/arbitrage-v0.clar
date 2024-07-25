@@ -1,54 +1,21 @@
-;; Title: Arbitrage v0
+;; Title: Arbitrage
+;; Formula: WELSH -> STX -> sWELSH -> WELSH
 ;; Author: rozar.btc
+;; Synopsis:
+;; Grow your Welshcorgicoin holdings by taking advantage of price differences between WELSH and sWELSH.
+;; Fees:
+;; There is a fee of 200 WELSH for using this paid out to the welsh community staking pool.
+;; There is a fee of 800 WELSH for using this paid out to the contract creator.
 
-;; 'SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-router
+(define-constant COMMUNITY_ROYALTY u200000000)
+(define-constant CREATOR_ROYALTY u800000000)
 
-(define-constant err-insufficient-funds (err u4001))
-
-(define-public (strategy-a (amount-stx-in uint) (amount-welsh-in uint))
-    (let (
-        (sender tx-sender)
-    )
-        (asserts! (>= (stx-get-balance sender) amount-stx-in) err-insufficient-funds)
-        (swap-stx-for-swelsh amount-stx-in u0)
-        (try! (contract-call? .liquid-staked-welsh-v2 unstake (unwrap-panic (contract-call? .liquid-staked-welsh-v2 get-balance sender))))
-        (swap-welsh-for-stx amount-welsh-in u0)
-        (try! (contract-call? .liquid-staked-welsh-v2 stake (unwrap-panic (contract-call? 'SP3NE50GEXFG9SZGTT51P40X2CKYSZ5CC4ZTZ7A2G.welshcorgicoin-token get-balance sender))))
+(define-public (execute-strategy (amount-in uint))
+    (begin
+        (try! (contract-call? 'SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-path2 swap-3 amount-in amount-in 'SP3NE50GEXFG9SZGTT51P40X2CKYSZ5CC4ZTZ7A2G.welshcorgicoin-token 'SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.wstx 'SP2ZNGJ85ENDY6QRHQ5P2D4FXKGZWCKTB2T0Z55KS.liquid-staked-welsh-v2 'SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-share-fee-to))
+        (try! (contract-call? 'SP2ZNGJ85ENDY6QRHQ5P2D4FXKGZWCKTB2T0Z55KS.liquid-staked-welsh-v2 unstake amount-in))
+        (try! (contract-call? 'SP2ZNGJ85ENDY6QRHQ5P2D4FXKGZWCKTB2T0Z55KS.liquid-staked-welsh-v2 deposit COMMUNITY_ROYALTY))
+        (try! (contract-call? 'SP3NE50GEXFG9SZGTT51P40X2CKYSZ5CC4ZTZ7A2G.welshcorgicoin-token transfer CREATOR_ROYALTY tx-sender 'SP2ZNGJ85ENDY6QRHQ5P2D4FXKGZWCKTB2T0Z55KS none))
         (ok true)
     )
 )
-
-(define-private (swap-stx-for-swelsh (amount-stx uint) (amt-out-min uint))
-    (contract-call? .univ2-router swap-exact-tokens-for-tokens u26 .wstx .liquid-staked-welsh-v2 .wstx .liquid-staked-welsh-v2 .univ2-share-fee-to amount-stx amt-out-min)
-)
-
-(define-private (swap-swelsh-for-stx (amount-swelsh uint) (amt-out-min uint))
-    (contract-call? .univ2-router swap-exact-tokens-for-tokens u26 .wstx .liquid-staked-welsh-v2 .liquid-staked-welsh-v2 .wstx .univ2-share-fee-to amount-swelsh amt-out-min)
-)
-
-(define-private (swap-welsh-for-stx (amount-welsh uint) (amt-out-min uint))
-    (contract-call? .univ2-router swap-exact-tokens-for-tokens u27 .wstx 'SP3NE50GEXFG9SZGTT51P40X2CKYSZ5CC4ZTZ7A2G.welshcorgicoin-token 'SP3NE50GEXFG9SZGTT51P40X2CKYSZ5CC4ZTZ7A2G.welshcorgicoin-token .wstx .univ2-share-fee-to amount-welsh amt-out-min)
-)
-
-
-;; (define-constant err-insufficient-funds (err u4001))
-
-;; (define-public (strategy-a (amount-stx-in uint) (amount-welsh-in uint))
-;;     (let (
-;;         (sender tx-sender)
-;;     )
-;;         (asserts! (>= (stx-get-balance sender) amount-stx-in) err-insufficient-funds)
-;;         (swap-stx-for-swelsh amount-stx-in u0)
-;;         (try! (contract-call? .liquid-staked-welsh-v2 unstake (unwrap-panic (contract-call? .liquid-staked-welsh-v2 get-balance sender))))
-;;         (swap-welsh-for-stx amount-welsh-in u0)
-;;         (contract-call? .liquid-staked-welsh-v2 stake (unwrap-panic (contract-call? 'SP3NE50GEXFG9SZGTT51P40X2CKYSZ5CC4ZTZ7A2G.welshcorgicoin-token get-balance sender)))
-;;     )
-;; )
-
-;; (define-private (swap-stx-for-swelsh (amount-stx uint) (amt-out-min uint))
-;;     (contract-call? 'SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-router swap-exact-tokens-for-tokens u26 'SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.wstx .liquid-staked-welsh-v2 'SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.wstx .liquid-staked-welsh-v2 'SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-share-fee-to amount-stx amt-out-min)
-;; )
-
-;; (define-private (swap-welsh-for-stx (amount-welsh uint) (amt-out-min uint))
-;;     (contract-call? 'SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-router swap-exact-tokens-for-tokens u27 'SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.wstx 'SP3NE50GEXFG9SZGTT51P40X2CKYSZ5CC4ZTZ7A2G.welshcorgicoin-token 'SP3NE50GEXFG9SZGTT51P40X2CKYSZ5CC4ZTZ7A2G.welshcorgicoin-token 'SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.wstx 'SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-share-fee-to amount-welsh amt-out-min)
-;; )

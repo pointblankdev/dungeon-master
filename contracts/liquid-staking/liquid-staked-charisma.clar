@@ -1,11 +1,11 @@
-;; Title: Liquid Staked Leo
+;; Title: Liquid Staked Charisma
 ;; Author: rozar.btc
 ;; Synopsis:
-;; This contract implements a liquid staking solution for Leo.
-;; It provides users with liquid tokens (sLEO) that represent staked Leo. 
+;; This contract implements a liquid staking solution for Charisma.
+;; It provides users with liquid tokens (sCHA) that represent staked Charisma. 
 ;; This allows users to retain liquidity while participating in staking.
 
-(impl-trait .dao-traits-v1.sip010-ft-trait)
+(impl-trait .dao-traits-v2.sip010-ft-trait)
 
 (define-fungible-token liquid-staked-token)
 
@@ -16,9 +16,9 @@
 
 (define-constant contract (as-contract tx-sender))
 
-(define-data-var token-name (string-ascii 32) "Liquid Staked Leo")
-(define-data-var token-symbol (string-ascii 10) "sLEO")
-(define-data-var token-uri (optional (string-utf8 256)) (some u"https://charisma.rocks/liquid-staked-leo.json"))
+(define-data-var token-name (string-ascii 32) "Liquid Staked Charisma")
+(define-data-var token-symbol (string-ascii 10) "sCHA")
+(define-data-var token-uri (optional (string-utf8 256)) (some u"https://charisma.rocks/liquid-staked-charisma.json"))
 (define-data-var token-decimals uint u6)
 
 ;; --- Authorization check
@@ -37,7 +37,7 @@
 				(amount-lst (/ (* amount inverse-rate) ONE_6))
 				(sender tx-sender)
 			)
-			(try! (contract-call? 'SP1AY6K3PQV5MRT6R4S671NWW2FRVPKM0BR162CT6.leo-token transfer amount sender contract none))
+			(try! (contract-call? .dme000-governance-token transfer amount sender contract none))
 			(try! (mint amount-lst sender))
 		)
 		(ok true)
@@ -53,14 +53,14 @@
 				(sender tx-sender)
 			)
 			(try! (burn amount sender))
-			(try! (as-contract (contract-call? 'SP1AY6K3PQV5MRT6R4S671NWW2FRVPKM0BR162CT6.leo-token transfer amount-token contract sender none)))
+			(try! (as-contract (contract-call? .dme000-governance-token transfer amount-token contract sender none)))
 		)
 		(ok true)
 	)
 )
 
 (define-public (deposit (amount uint))
-    (contract-call? 'SP1AY6K3PQV5MRT6R4S671NWW2FRVPKM0BR162CT6.leo-token transfer amount tx-sender contract none)
+    (contract-call? .dme000-governance-token transfer amount tx-sender contract none)
 )
 
 (define-public (deflate (amount uint))
@@ -136,7 +136,7 @@
 )
 
 (define-read-only (get-total-in-pool)
-	(unwrap-panic (contract-call? 'SP1AY6K3PQV5MRT6R4S671NWW2FRVPKM0BR162CT6.leo-token get-balance contract))
+	(unwrap-panic (contract-call? .dme000-governance-token get-balance contract))
 )
 
 (define-read-only (get-exchange-rate)

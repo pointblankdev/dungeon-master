@@ -12,25 +12,51 @@ path = "contracts/dungeon-master.clar"
 depends_on = []
 
 # extentions
-[contracts.early-users-list]
-path = "contracts/extensions/early-users-list.clar"
-depends_on = []
-
 [contracts.dme000-governance-token]
 path = "contracts/extensions/dme000-governance-token.clar"
 depends_on = []
 
-# swaps
-[contracts.arbitrage-v0]
-path = "contracts/swaps/arbitrage-v0.clar"
+[contracts.liquid-staked-charisma]
+path = "contracts/liquid-staking/liquid-staked-charisma.clar"
+depends_on = []
+
+[contracts.experience]
+path = "contracts/creatures/experience.clar"
+depends_on = []
+
+[contracts.battle-royale]
+path = "contracts/quests/battle-royale.clar"
+depends_on = []
+
+# extentions
+[contracts.fuji-apples]
+path = "contracts/quests/fuji-apples.clar"
+depends_on = []
+[contracts.iron-ingots]
+path = "contracts/quests/iron-ingots.clar"
+depends_on = []
+
+# creatures
+[contracts.creatures-core]
+path = "contracts/creatures/creatures-core.clar"
+depends_on = []
+[contracts.creatures-energy]
+path = "contracts/creatures/creatures-energy.clar"
+depends_on = []
+[contracts.prize-fight]
+path = "contracts/quests/prize-fight.clar"
 depends_on = []
 
 # proposals
-[contracts.dmp027-airdrop-rewards]
-path = "contracts/proposals/dmp027-airdrop-rewards.clar"
+[contracts.dmp000-bootstrap]
+path = "contracts/proposals/dmp000-bootstrap.clar"
 depends_on = []
 
 # traits
 [contracts.dao-traits-v2]
 path = "contracts/traits/dao-traits-v2.clar"
+depends_on = []
+
+[contracts.sft-traits]
+path = "contracts/traits/sft-traits.clar"
 depends_on = []

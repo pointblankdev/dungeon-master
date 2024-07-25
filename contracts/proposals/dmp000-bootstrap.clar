@@ -9,7 +9,7 @@
 ;; "DME002 Proposal Submission", "DME003 Emergency Proposals",
 ;; "DME004 Emergency Execute".
 
-(impl-trait .proposal-trait.proposal-trait)
+(impl-trait .dao-traits-v2.proposal-trait)
 
 (define-public (execute (sender principal))
 	(begin
@@ -17,10 +17,9 @@
 		(try! (contract-call? .dungeon-master set-extensions
 			(list
 				{extension: .dme000-governance-token, enabled: true}
-				{extension: .dme024-liquid-staking-pools, enabled: true}
-				{extension: .crafting-helper, enabled: true}
-				{extension: .fenrir-corgi-of-ragnarok, enabled: true}
-				{extension: .odins-raven, enabled: true}
+				{extension: .creatures-core, enabled: true}
+				{extension: .creatures-energy, enabled: true}
+				{extension: .verdant-orchard, enabled: true}
 			)		
 			
 		))
@@ -28,9 +27,15 @@
 		;; Mint initial token supply.
 		(try! (contract-call? .dme000-governance-token dmg-mint-many
 			(list
-				{amount: u1, recipient: tx-sender}
+				{amount: u100, recipient: sender}
+				{amount: u100, recipient: 'ST1SJ3DTE5DN7X54YDH5D64R3BCB6A2AG2ZQ8YPD5}
+				{amount: u1, recipient: .liquid-staked-charisma}
 			)
 		))
+
+		(try! (contract-call? .creatures-core set-whitelisted .dme000-governance-token true))
+		(try! (contract-call? .creatures-core set-creature-cost u1 u1))
+		(try! (contract-call? .creatures-core set-creature-power u1 u1))
 
 		;; (try! (contract-call? .crafting-helper set-crafting-recipe .woo-meme-world-champion .liquid-staked-welsh-v2 .liquid-staked-roo-v2))
 
