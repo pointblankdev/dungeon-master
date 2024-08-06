@@ -20,6 +20,14 @@ depends_on = []
 path = "contracts/liquid-staking/liquid-staked-charisma.clar"
 depends_on = []
 
+[contracts.scha-helper]
+path = "contracts/extensions/scha-helper.clar"
+depends_on = []
+
+[contracts.lands]
+path = "contracts/creatures/lands.clar"
+depends_on = []
+
 [contracts.experience]
 path = "contracts/creatures/experience.clar"
 depends_on = []
